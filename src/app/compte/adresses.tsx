@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import { ActivityIndicator, Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { Button, Empty } from '@/components/ui';
-import { Address, deleteAddress, getAddresses } from '@/lib/account';
+import { Address, deleteAddress, getAddresses, numericId } from '@/lib/account';
 import { C, F, R, S, T } from '@/theme';
 
 export default function Adresses() {
@@ -13,7 +13,7 @@ export default function Adresses() {
   useFocusEffect(load);
   const remove = (a: Address) => Alert.alert('Supprimer cette adresse ?', a.formatted.join(', '), [
     { text: 'Annuler', style: 'cancel' },
-    { text: 'Supprimer', style: 'destructive', onPress: () => deleteAddress(a.id).then(load).catch(e => setError(e.message)) },
+    { text: 'Supprimer', style: 'destructive', onPress: () => deleteAddress(a.id).then(setData).catch(e => setError(e.message)) },
   ]);
   return (
     <ScrollView style={{ backgroundColor: C.bg }} contentContainerStyle={{ padding: S.edge, gap: 14, paddingBottom: 40 }}>
@@ -23,11 +23,11 @@ export default function Adresses() {
       {data && !data.addresses.length ? <Empty title="Aucune adresse enregistrée" text="Ajoutez une adresse pour la retrouver lors de vos prochaines commandes." /> : null}
       {data?.addresses.map(a => (
         <View key={a.id} style={st.card}>
-          {a.id === data.defaultId ? <Text style={T.label}>Par défaut</Text> : null}
+          {numericId(a.id) === numericId(data.defaultId ?? '') ? <Text style={T.label}>Par défaut</Text> : null}
           {a.formatted.map((x, i) => <Text key={i} style={T.body}>{x}</Text>)}
-          {a.phoneNumber ? <Text style={T.small}>{a.phoneNumber}</Text> : null}
+          {a.phone ? <Text style={T.small}>{a.phone}</Text> : null}
           <View style={{ flexDirection: 'row', gap: 18, marginTop: 6 }}>
-            <Pressable onPress={() => router.push({ pathname: '/compte/adresse', params: { id: a.id } })} hitSlop={8} accessibilityRole="button"><Text style={st.link}>Modifier</Text></Pressable>
+            <Pressable onPress={() => router.push({ pathname: '/compte/adresse', params: { id: numericId(a.id) } })} hitSlop={8} accessibilityRole="button"><Text style={st.link}>Modifier</Text></Pressable>
             <Pressable onPress={() => remove(a)} hitSlop={8} accessibilityRole="button"><Text style={[st.link, { color: C.error }]}>Supprimer</Text></Pressable>
           </View>
         </View>

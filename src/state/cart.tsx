@@ -5,7 +5,8 @@ import * as WebBrowser from 'expo-web-browser';
 import { createContext, ReactNode, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { AppState, Platform } from 'react-native';
 
-import { Cart, cartAdd, cartCreate, cartGet, cartRemove, cartUpdate } from '@/lib/shopify';
+import { Cart, cartAdd, cartBuyer, cartCreate, cartGet, cartRemove, cartUpdate } from '@/lib/shopify';
+import { currentBuyer, onBuyerChange } from '@/state/cart-link';
 
 const KEY = 'zayou:cart';
 type Ctx = {
@@ -35,6 +36,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try { const c = await cartGet(id); save(c && c.totalQuantity >= 0 ? c : null); } catch { /* offline: keep last state */ }
   }, []);
 
+  // keep the cart's buyer identity in sync with the logged-in customer
+  useEffect(() => onBuyerChange(b => { const id = idRef.current; if (id) cartBuyer(id, b).then(c => c && save(c)).catch(() => {}); }), []);
+
   useEffect(() => { refresh(); const sub = AppState.addEventListener('change', s => { if (s === 'active') refresh(); }); return () => sub.remove(); }, [refresh]);
 
   const run = async <T,>(fn: () => Promise<T>): Promise<T | undefined> => {
@@ -48,12 +52,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const c = await run(async () => {
       const lines = [{ merchandiseId: variantId, quantity }];
       const id = idRef.current;
-      if (!id) return cartCreate(lines);
+      const withBuyer = async (c: Cart | null) => { const b = currentBuyer(); return c && b ? (await cartBuyer(c.id, b).catch(() => c)) : c; };
+      if (!id) return withBuyer(await cartCreate(lines));
       try { return await cartAdd(id, lines); }
       catch (e) {
         // Only start a new cart if the old one no longer exists (e.g. it was checked out); otherwise surface the error.
         if (await cartGet(id).catch(() => null)) throw e;
-        return cartCreate(lines);
+        return withBuyer(await cartCreate(lines));
       }
     });
     if (c) { save(c); setLastAdded({ id: variantId, at: Date.now() }); return true; }

@@ -39,6 +39,11 @@ export default function RootLayout() {
               <Stack.Screen name="compte/commande/[id]" options={{ title: 'Commande' }} />
               <Stack.Screen name="compte/adresses" options={{ title: 'Mes adresses' }} />
               <Stack.Screen name="compte/adresse" options={{ title: 'Adresse', presentation: 'modal' }} />
+              <Stack.Screen name="compte/connexion" options={{ title: 'Se connecter' }} />
+              <Stack.Screen name="compte/inscription" options={{ title: 'S’inscrire' }} />
+              <Stack.Screen name="compte/code" options={{ title: 'Code' }} />
+              <Stack.Screen name="compte/mot-de-passe-oublie" options={{ title: 'Mot de passe oublié' }} />
+              <Stack.Screen name="compte/profil" options={{ title: 'Mes informations' }} />
             </Stack>
             <AddedToast />
           </CartProvider>

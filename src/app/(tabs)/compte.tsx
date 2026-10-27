@@ -1,14 +1,14 @@
-// "Compte" tab: Shopify customer account (orders, addresses), wishlist, help and contact.
-import { Link, useFocusEffect } from 'expo-router';
+// "Compte" tab: native sign-up / login (ZAYOU account), orders, addresses, profile, wishlist, help and contact.
+import { Link, router, useFocusEffect } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { ActivityIndicator, Alert, Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Icon, IconName } from '@/components/Icon';
 import { Button } from '@/components/ui';
 import content from '@/content/sections.json';
-import { orderStatus } from '@/lib/account';
+import { deleteAccount, numericId, orderStatus } from '@/lib/account';
 import { money, SHOP_DOMAIN } from '@/lib/shopify';
 import { useAccount } from '@/state/account';
 import { useWishlist } from '@/state/wishlist';
@@ -18,17 +18,19 @@ const wa = content.settings.whatsapp.replace(/[^\d]/g, '');
 const tel = content.settings.phone.replace(/[^\d+]/g, '');
 
 export default function Compte() {
-  const { status, customer, error, configured, login, logout, reload } = useAccount();
+  const { status, customer, orders, error, configured, logout, reload } = useAccount();
   const { handles } = useWishlist();
+  const [deleting, setDeleting] = useState(false);
   useFocusEffect(useCallback(() => { if (status === 'in') reload(); }, [status, reload]));
-  const last = customer?.orders.nodes[0];
+  const last = orders[0];
 
-  const askDeletion = () => Alert.alert('Supprimer mon compte', 'Votre demande sera envoyée à zayou sur WhatsApp. Votre compte et vos données personnelles seront supprimés, et vous serez déconnecté de l’application.', [
+  const confirmDelete = () => Alert.alert('Supprimer mon compte', 'Votre compte zayou et votre mot de passe seront supprimés immédiatement. Vos données personnelles seront effacées de la boutique. Cette action est définitive.', [
     { text: 'Annuler', style: 'cancel' },
-    { text: 'Envoyer la demande', style: 'destructive', onPress: async () => {
-      const email = customer?.emailAddress?.emailAddress ?? '';
-      await Linking.openURL(`https://wa.me/${wa}?text=${encodeURIComponent(`Bonjour, je souhaite supprimer mon compte zayou et mes données personnelles. E-mail du compte : ${email}`)}`);
-      await logout();
+    { text: 'Supprimer', style: 'destructive', onPress: async () => {
+      setDeleting(true);
+      try { await deleteAccount(); await logout(); Alert.alert('Compte supprimé', 'Votre compte a bien été supprimé.'); }
+      catch (e) { Alert.alert('Suppression impossible', e instanceof Error ? e.message : 'Réessayez dans un instant.'); }
+      finally { setDeleting(false); }
     } },
   ]);
 
@@ -40,34 +42,37 @@ export default function Compte() {
         {status === 'loading' ? <ActivityIndicator color={C.ink} /> : status === 'out' ? (
           <View style={st.card}>
             <Text style={T.h3}>Votre espace zayou</Text>
-            <Text style={T.bodyMuted}>Suivez vos commandes, enregistrez vos adresses et retrouvez vos favoris. Connexion par un code envoyé à votre adresse e-mail : pas de mot de passe.</Text>
-            {configured ? <Button label="Se connecter ou créer un compte" onPress={login} /> : <Text style={T.small}>La connexion au compte sera disponible très bientôt.</Text>}
-            {error ? <Text style={st.err} accessibilityRole="alert">{error}</Text> : null}
+            <Text style={T.bodyMuted}>Suivez vos commandes, enregistrez vos adresses et retrouvez vos favoris.</Text>
+            {configured ? (
+              <View style={{ gap: 10 }}>
+                <Button label="Se connecter" onPress={() => router.push('/compte/connexion')} />
+                <Button label="S’inscrire" variant="ghost" onPress={() => router.push('/compte/inscription')} />
+              </View>
+            ) : <Text style={T.small}>La création de compte sera disponible très bientôt.</Text>}
           </View>
         ) : (
-          <View style={{ gap: 18 }}>
+          <View style={{ gap: 16 }}>
             <View style={{ gap: 4 }}>
-              <Text style={T.h2}>Bonjour {customer?.firstName || customer?.displayName || ''}</Text>
-              {customer?.emailAddress?.emailAddress ? <Text style={T.small}>{customer.emailAddress.emailAddress}</Text> : null}
+              <Text style={T.h2}>Bonjour {customer?.firstName}</Text>
+              <Text style={T.small}>{customer?.email}</Text>
             </View>
             {last ? (
-              <Link href={`/compte/commande/${encodeURIComponent(last.id)}`} asChild>
+              <Link href={`/compte/commande/${numericId(last.id)}`} asChild>
                 <Pressable style={st.card} accessibilityRole="link" accessibilityLabel={`Dernière commande ${last.name}, ${orderStatus(last)}`}>
                   <Text style={T.label}>Dernière commande</Text>
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text style={st.strong}>{last.name}</Text><Text style={T.price}>{money(last.totalPrice)}</Text>
-                  </View>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Text style={st.strong}>{last.name}</Text><Text style={T.price}>{money(last.total)}</Text></View>
                   <Text style={T.small}>{orderStatus(last)} · {new Date(last.processedAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</Text>
                 </Pressable>
               </Link>
             ) : null}
-            {error ? <Text style={st.err} accessibilityRole="alert">{error}</Text> : null}
           </View>
         )}
+        {error ? <Text style={st.err} accessibilityRole="alert">{error}</Text> : null}
 
         <Group title="Mon espace">
           {status === 'in' ? <Row href="/compte/commandes" icon="box" label="Mes commandes" /> : null}
           {status === 'in' ? <Row href="/compte/adresses" icon="pin" label="Mes adresses" /> : null}
+          {status === 'in' ? <Row href="/compte/profil" icon="account" label="Mes informations" /> : null}
           <Row href="/favoris" icon="heart" label={`Mes favoris${handles.length ? ` (${handles.length})` : ''}`} />
         </Group>
 
@@ -89,7 +94,7 @@ export default function Compte() {
         {status === 'in' ? (
           <Group title="Compte">
             <Row onPress={logout} icon="logout" label="Se déconnecter" />
-            <Row onPress={askDeletion} label="Supprimer mon compte" danger />
+            <Row onPress={confirmDelete} label={deleting ? 'Suppression…' : 'Supprimer mon compte'} danger />
           </Group>
         ) : null}
 

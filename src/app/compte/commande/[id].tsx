@@ -1,7 +1,7 @@
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { Link, Stack, useLocalSearchParams } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { Button, Empty, Tile } from '@/components/ui';
 import { FINANCIAL, getOrder, Order, orderStatus } from '@/lib/account';
@@ -11,7 +11,7 @@ import { C, F, S, T } from '@/theme';
 export default function Commande() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const [order, setOrder] = useState<Order | null | undefined>(undefined);
-  useEffect(() => { getOrder(decodeURIComponent(id)).then(setOrder).catch(() => setOrder(null)); }, [id]);
+  useEffect(() => { getOrder(id).then(setOrder).catch(() => setOrder(null)); }, [id]);
   if (order === undefined) return <ActivityIndicator style={{ marginTop: 32 }} color={C.ink} />;
   if (!order) return <View style={{ padding: S.edge }}><Empty title="Commande introuvable" /></View>;
   return (
@@ -22,29 +22,32 @@ export default function Commande() {
         <Text style={T.small}>Passée le {new Date(order.processedAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}{order.financialStatus ? ` · ${FINANCIAL[order.financialStatus] ?? order.financialStatus}` : ''}</Text>
       </View>
       <View>
-        {order.lineItems.nodes.map((l, i) => (
-          <View key={i} style={st.line}>
-            <View style={{ width: 72 }}><Tile uri={l.image?.url} width={200} packshot /></View>
-            <View style={{ flex: 1, gap: 3 }}>
-              <Text style={st.name}>{l.name}</Text>
-              <Text style={T.small}>{l.variantTitle ? `Pointure : ${l.variantTitle} · ` : ''}Quantité : {l.quantity}</Text>
+        {order.lines.map((l, i) => {
+          const row = (
+            <View style={st.line}>
+              <View style={{ width: 72 }}><Tile uri={l.image} width={200} packshot /></View>
+              <View style={{ flex: 1, gap: 3 }}>
+                <Text style={st.name}>{l.name}</Text>
+                <Text style={T.small}>{l.size ? `Pointure : ${l.size} · ` : ''}Quantité : {l.quantity}</Text>
+              </View>
+              <Text style={T.price}>{money(l.total)}</Text>
             </View>
-            <Text style={T.price}>{money(l.totalPrice)}</Text>
-          </View>
-        ))}
+          );
+          return l.handle ? <Link key={i} href={`/produit/${l.handle}`} asChild><Pressable accessibilityRole="link">{row}</Pressable></Link> : <View key={i}>{row}</View>;
+        })}
       </View>
       <View style={{ gap: 6 }}>
         {order.subtotal ? <Row label="Sous-total" value={money(order.subtotal)} /> : null}
-        <Row label="Livraison" value={money(order.totalShipping)} />
-        <Row label="Total" value={money(order.totalPrice)} strong />
+        {order.shipping ? <Row label="Livraison" value={money(order.shipping)} /> : null}
+        <Row label="Total" value={money(order.total)} strong />
       </View>
       {order.shippingAddress ? (
         <View style={{ gap: 4 }}>
           <Text style={T.label}>Adresse de livraison</Text>
-          {order.shippingAddress.formatted.map((x, i) => <Text key={i} style={T.body}>{x}</Text>)}
+          {order.shippingAddress.map((x, i) => <Text key={i} style={T.body}>{x}</Text>)}
         </View>
       ) : null}
-      <Button label="Suivre ma commande" variant="ghost" icon="arrow-right" onPress={() => WebBrowser.openBrowserAsync(order.statusPageUrl)} />
+      {order.statusPageUrl ? <Button label="Suivre ma commande" variant="ghost" icon="arrow-right" onPress={() => WebBrowser.openBrowserAsync(order.statusPageUrl)} /> : null}
     </ScrollView>
   );
 }

@@ -1,0 +1,7 @@
+{
+  "name": "zayou-app-api",
+  "private": true,
+  "description": "ZAYOU mobile app API: native sign-up/login backed by Shopify customers (no dependencies)",
+  "engines": { "node": ">=20" },
+  "scripts": { "dev": "node dev.js" }
+}

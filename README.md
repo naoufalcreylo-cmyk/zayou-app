@@ -28,25 +28,35 @@ Les textes, choix de produits et photos (accueil, guide des pointures, FAQ, entr
 - `storefrontToken` : vide = accès sans jeton (suffisant pour tester). Pour la production, coller le **jeton public Storefront** du canal *Headless* de Shopify (limites de requêtes plus élevées).
 - Identifiants : `ma.zayou.app` (iOS et Android).
 
-## Compte client (Shopify « nouveaux comptes clients »)
-Connexion par code e-mail via la **Customer Account API** (OAuth + PKCE, client public). À configurer dans Shopify : *Canaux de vente › Headless › (storefront) › Customer Account API* :
-- Type de client : **Public**
-- URL de rappel (callback) : **`shop.62344691777.app://callback`**
-- Copier le **Client ID** dans `app.json › expo.extra.customerAccountClientId`.
+## Comptes clients (inscription / connexion natives)
+Écrans ZAYOU : **S’inscrire** (prénom, nom, e-mail, mot de passe) et **Se connecter** (e-mail, mot de passe), code à 6 chiffres envoyé par e-mail pour confirmer l’adresse et pour « mot de passe oublié ».
+Le serveur `server/` (Vercel, sans dépendance ni base de données) gère les mots de passe (scrypt) dans un métachamp privé du client Shopify (`zayou_app.auth`) et lit les commandes / adresses avec l’Admin API.
+- Client inconnu → créé dans Shopify (tag `app-zayou`) ; client existant (ex. commande passée sur le site) → rattaché **après** confirmation de l’e-mail.
+- Commandes : celles du client Shopify (même e-mail) ; le panier de l’app envoie l’e-mail du client connecté au checkout.
+- Sessions : jeton signé 30 jours, révoqué au changement de mot de passe ; blocage 15 min après 8 essais ratés.
 
-La connexion ne fonctionne pas dans Expo Go (Shopify impose le schéma `shop.62344691777.app`) : il faut une **version de développement** (`npx eas-cli build --profile development`).
-Comptes : commandes (suivi via la page de statut Shopify), adresses (ajout, modification, suppression, par défaut), favoris (sur l’appareil), déconnexion, demande de suppression du compte (WhatsApp, à traiter dans l’admin : *Clients › client › Effacer les données personnelles*).
+Variables d’environnement du serveur (Vercel) :
+| Nom | Valeur |
+|---|---|
+| `AUTH_SECRET` | 64 caractères aléatoires |
+| `SHOPIFY_SHOP` | `zayou-5` |
+| `SHOPIFY_CLIENT_ID` / `SHOPIFY_CLIENT_SECRET` | app du Dev Dashboard (scopes `read_customers`, `write_customers`, `read_orders`) installée sur la boutique |
+| `RESEND_API_KEY` / `MAIL_FROM` | envoi des codes (ex. `zayou <compte@zayou.ma>`) |
+
+Puis `app.json › expo.extra.apiUrl` = URL du serveur.
+Tests : `node --test server/test/auth.test.js` (logique, Shopify simulé) ; `node server/test/mock-server.js` + `node scripts/account-flows.js` (écrans, apiUrl → http://localhost:8787 le temps du test).
 
 ## Structure
 ```
 src/app/(tabs)/       Accueil, Boutique, Recherche, Panier, Compte
-src/app/compte/       commandes, détail commande, adresses
+src/app/compte/       connexion, inscription, code, mot de passe oublié, profil, commandes, adresses
 src/app/favoris.tsx   favoris
 src/app/collection/   catégories (filtre pointure, en stock, tri — sur l'appareil)
 src/app/produit/      fiche produit (photos originales, coloris, pointures, ajout au panier)
 src/app/page/         pages d'info (mêmes contenus que le site)
 src/lib/shopify.ts    client Storefront API (produits, collections, recherche, panier)
-src/lib/account.ts    Customer Account API (connexion, commandes, adresses)
+src/lib/account.ts    client de l’API compte ZAYOU (server/)
+server/               API Vercel : inscription, connexion, codes, commandes, adresses, suppression
 src/state/            panier (Shopify), compte, favoris, pointure mémorisée
 src/components/       sections, cartes produit, sélecteur de pointure, ajout rapide
 ```

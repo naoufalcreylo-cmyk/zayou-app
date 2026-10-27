@@ -170,6 +170,13 @@ export async function cartUpdate(cartId: string, lines: { id: string; quantity: 
   const d = await shopify<{ cartLinesUpdate: Mut }>(`mutation($cartId: ID!, $lines: [CartLineUpdateInput!]!) { cartLinesUpdate(cartId: $cartId, lines: $lines) { cart { ${CART} } userErrors { message } } }`, { cartId, lines });
   return check(d.cartLinesUpdate);
 }
+export async function cartBuyer(cartId: string, buyer: { email?: string; phone?: string } | null): Promise<Cart | null> {
+  // Shopify expects E.164 phones; only send a phone that looks valid.
+  const phone = buyer?.phone && /^\+\d{8,15}$/.test(buyer.phone) ? buyer.phone : undefined;
+  const d = await shopify<{ cartBuyerIdentityUpdate: Mut }>(`mutation($cartId: ID!, $b: CartBuyerIdentityInput!) { cartBuyerIdentityUpdate(cartId: $cartId, buyerIdentity: $b) { cart { ${CART} } userErrors { message } } }`,
+    { cartId, b: { countryCode: 'MA', email: buyer?.email ?? null, ...(phone ? { phone } : {}) } });
+  return check(d.cartBuyerIdentityUpdate);
+}
 export async function cartRemove(cartId: string, lineIds: string[]): Promise<Cart | null> {
   const d = await shopify<{ cartLinesRemove: Mut }>(`mutation($cartId: ID!, $lineIds: [ID!]!) { cartLinesRemove(cartId: $cartId, lineIds: $lineIds) { cart { ${CART} } userErrors { message } } }`, { cartId, lineIds });
   return check(d.cartLinesRemove);
