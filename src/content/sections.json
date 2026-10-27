@@ -1,0 +1,1263 @@
+{
+ "generatedFrom": "zayou-redesign/theme/templates (2026-10-27)",
+ "home": [
+  {
+   "type": "hero",
+   "eyebrow": "La saison des mocassins",
+   "heading": "souples, du matin au soir.",
+   "text": [
+    "Mocassins en daim et en cuir, du 39 au 43. Livraison partout au Maroc, paiement à la livraison."
+   ],
+   "image": {
+    "product": "mocassins-souples-en-daim-3",
+    "position": 2
+   },
+   "image2": {
+    "product": "mocassins-souples-en-daim-bleu-marine",
+    "position": 2
+   },
+   "alt": "Mocassins souples en daim noir posés sur un parquet",
+   "cta": "Découvrir les mocassins",
+   "href": "/collection/mocassins-homme",
+   "cta2": "Toutes les baskets",
+   "href2": "/collection/baskets-homme"
+  },
+  {
+   "type": "categories",
+   "heading": "par catégorie",
+   "items": [
+    {
+     "collection": "baskets-homme",
+     "label": "baskets",
+     "image": {
+      "product": "basket-homme-0013-cuir-tabac",
+      "position": 1
+     }
+    },
+    {
+     "collection": "mocassins-homme",
+     "label": "mocassins",
+     "image": {
+      "product": "mocassins-souples-en-daim-5",
+      "position": 2
+     }
+    },
+    {
+     "collection": "bottines-homme",
+     "label": "bottines",
+     "image": {
+      "product": "bottine-homme-002-cuir-tabac",
+      "position": 1
+     }
+    },
+    {
+     "collection": "sandales-homme",
+     "label": "sandales",
+     "image": {
+      "product": "013-sandales-homme-en-cuir-noir",
+      "position": 1
+     }
+    },
+    {
+     "collection": "sabot-homme",
+     "label": "sabots",
+     "image": {
+      "product": "sabot-pantoufle-marron-001",
+      "position": 1
+     }
+    }
+   ]
+  },
+  {
+   "type": "rail",
+   "heading": "la sélection zayou",
+   "products": [
+    "crest-tabac",
+    "mocassins-souples-en-daim-bleu-marine",
+    "bottine-homme-002-cuir-tabac",
+    "nomad-gris",
+    "basket-homme-0013-cuir-tabac",
+    "eclipse-beige",
+    "mocassins-souples-en-cuir-1",
+    "streamline-noir"
+   ],
+   "action": "Toutes les baskets",
+   "href": "/collection/baskets-homme"
+  },
+  {
+   "type": "styles",
+   "layout": "tabs",
+   "heading": "trouvez votre style",
+   "action": "Toutes nos inspirations",
+   "href": "/page/inspirations",
+   "items": [
+    {
+     "id": "s1",
+     "title": "le casual net",
+     "text": [
+      "Une basket blanche en cuir et un pantalon droit qui s'arrête juste au-dessus de la chaussure : la base d'une tenue nette, du bureau au week-end."
+     ],
+     "image": {
+      "product": "basket-homme-007-cuir-blanc",
+      "position": 2
+     },
+     "alt": "Baskets blanches en cuir portées avec un pantalon gris",
+     "products": [
+      "basket-homme-007-cuir-blanc",
+      "basket-homme-0011-cuir-blanc",
+      "zenith-blanche",
+      "basket-homme-004-cuir-blanc"
+     ],
+     "cta": "Toutes les baskets",
+     "href": "/collection/baskets-homme"
+    },
+    {
+     "id": "s2",
+     "title": "le mocassin souple",
+     "text": [
+      "Avec un chino ou un pantalon de lin légèrement raccourci, sans chaussettes visibles. Le daim beige ou tabac adoucit une tenue claire."
+     ],
+     "image": {
+      "product": "mocassins-souples-en-daim-9",
+      "position": 5
+     },
+     "alt": "Mocassins en daim beige portés avec un pantalon gris clair",
+     "products": [
+      "mocassins-souples-en-daim-9",
+      "mocassins-souples-en-daim-3",
+      "mocassins-souples-en-daim-bleu-marine",
+      "mocassins-souples-en-daim-7"
+     ],
+     "cta": "Tous les mocassins",
+     "href": "/collection/mocassins-homme"
+    },
+    {
+     "id": "s3",
+     "title": "la bottine chelsea",
+     "text": [
+      "Avec un jean brut ou un pantalon en laine, l'ourlet posé sur la tige. Noire pour le soir, tabac pour la journée."
+     ],
+     "image": {
+      "product": "bottine-homme-002-cuir-tabac",
+      "position": 1
+     },
+     "alt": "Bottine chelsea en cuir tabac",
+     "products": [
+      "bottine-homme-002-cuir-tabac",
+      "bottine-homme-001-cuir-noir-1",
+      "bottine-homme-002-cuir-noir-1"
+     ],
+     "cta": "Toutes les bottines",
+     "href": "/collection/bottines-homme"
+    },
+    {
+     "id": "s4",
+     "title": "l'urbain technique",
+     "text": [
+      "Mesh, semelle épaisse et coloris contrastés : les modèles Broski se portent avec un jogging ajusté, un cargo ou un jean brut."
+     ],
+     "image": {
+      "product": "eclipse-beige",
+      "position": 4
+     },
+     "alt": "Semelle à effet éclaboussures de la basket Eclipse",
+     "products": [
+      "eclipse-bleu",
+      "eclipse-vert",
+      "nomad-gris",
+      "eclipse-beige"
+     ],
+     "cta": "Voir les modèles Broski",
+     "href": "/collection/vendor:Broski"
+    },
+    {
+     "id": "s5",
+     "title": "les beaux jours",
+     "text": [
+      "Sandales en cuir ou en daim, avec un pantalon en lin ou un short à pinces. Le noir va avec tout, le tabac réchauffe le blanc et le beige."
+     ],
+     "image": {
+      "product": "sandales-en-cuir-noir-007",
+      "position": 1
+     },
+     "alt": "Sandales en cuir noir portées avec un pantalon beige",
+     "products": [
+      "013-sandales-homme-en-cuir-noir",
+      "sandales-en-cuir-marron-7",
+      "sandales-homme-009-daim-tabac",
+      "sandales-en-cuir-noir-007"
+     ],
+     "cta": "Toutes les sandales",
+     "href": "/collection/sandales-homme"
+    }
+   ]
+  },
+  {
+   "type": "sizeFinder",
+   "heading": "votre pointure, d'abord.",
+   "text": [
+    "Choisissez votre pointure : la boutique n'affiche que les modèles disponibles dans cette taille. Elle sera repérée sur chaque fiche produit."
+   ]
+  },
+  {
+   "type": "spotlight",
+   "product": "crest-tabac",
+   "eyebrow": "Un modèle, toute la gamme",
+   "heading": "crest",
+   "text": [
+    "Basket basse Broski à semelle blanche contrastée. Choisissez votre coloris."
+   ],
+   "lineup": 4
+  },
+  {
+   "type": "details",
+   "heading": "dans le détail.",
+   "text": [
+    "Gros plans de nos photos produit : ce que l'on voit de près, avant de commander."
+   ],
+   "items": [
+    {
+     "product": "mocassins-souples-en-daim-bleu-marine",
+     "position": 3,
+     "caption": "Souple au point de se plier dans la main",
+     "alt": "Mocassin en daim bleu marine plié dans une main"
+    },
+    {
+     "product": "crest-kaki",
+     "position": 2,
+     "caption": "Lacets épais, finition mate",
+     "alt": "Gros plan sur les lacets de la basket Crest kaki"
+    },
+    {
+     "product": "crest-kaki",
+     "position": 4,
+     "caption": "Marquage Broski au talon",
+     "alt": "Talon de la basket Crest marqué Broski"
+    },
+    {
+     "product": "eclipse-beige",
+     "position": 3,
+     "caption": "Dessus en mesh, semelle à effet éclaboussures",
+     "alt": "Mesh et semelle mouchetée de la basket Eclipse"
+    },
+    {
+     "product": "nomad-gris",
+     "position": 3,
+     "caption": "Semelle épaisse aux tons beiges",
+     "alt": "Gros plan sur la basket Nomad grise"
+    }
+   ]
+  },
+  {
+   "type": "brand",
+   "eyebrow": "La marque",
+   "heading": "zayou, en bref.",
+   "text": [
+    "zayou est une marque marocaine de chaussures pour homme. Baskets, mocassins souples, bottines, sandales et sabots : des modèles simples à porter, du lundi au dimanche."
+   ],
+   "image": {
+    "product": "basket-homme-006-daim-tabac",
+    "position": 2
+   },
+   "alt": "Baskets en daim tabac portées avec un pantalon noir",
+   "facts": [
+    {
+     "value": "5",
+     "label": "catégories de chaussures"
+    },
+    {
+     "value": "39 – 45",
+     "label": "pointures, selon les modèles"
+    },
+    {
+     "value": "Partout",
+     "label": "livraison au Maroc"
+    },
+    {
+     "value": "À la livraison",
+     "label": "paiement"
+    }
+   ],
+   "action": "À propos de zayou",
+   "href": "/page/a-propos",
+   "surface": true
+  },
+  {
+   "type": "cards",
+   "heading": "conseils & guides",
+   "items": [
+    {
+     "href": "/page/guide-des-pointures",
+     "eyebrow": "Guide",
+     "title": "Trouver sa pointure",
+     "text": "Mesurer son pied et voir les pointures de chaque catégorie.",
+     "image": {
+      "product": "basket-homme-0012-cuir-tabac",
+      "position": 2
+     },
+     "photo": false
+    },
+    {
+     "href": "/page/entretien",
+     "eyebrow": "Conseils",
+     "title": "Entretenir cuir, daim et mesh",
+     "text": "Les bons gestes selon la matière de votre paire.",
+     "image": {
+      "product": "mocassins-souples-en-cuir",
+      "position": 3
+     },
+     "photo": true
+    },
+    {
+     "href": "/page/inspirations",
+     "eyebrow": "Inspirations",
+     "title": "Comment porter nos modèles",
+     "text": "Cinq façons de porter baskets, mocassins, bottines et sandales.",
+     "image": {
+      "product": "mocassins-souples-en-daim-5",
+      "position": 1
+     },
+     "photo": true
+    }
+   ]
+  }
+ ],
+ "pages": {
+  "a-propos": {
+   "title": "À propos",
+   "sections": [
+    {
+     "type": "pageHero",
+     "eyebrow": "La marque",
+     "title": "à propos de zayou",
+     "intro": [
+      "zayou est une marque marocaine de chaussures pour homme. Nous proposons des modèles simples à porter — baskets, mocassins souples, bottines, sandales et sabots — du 39 au 45 selon les modèles, livrés partout au Maroc."
+     ],
+     "image": {
+      "product": "mocassins-souples-en-daim-3",
+      "position": 2
+     },
+     "alt": "Mocassins souples en daim noir posés sur un parquet"
+    },
+    {
+     "type": "brand",
+     "eyebrow": "Ce que nous proposons",
+     "heading": "des chaussures pour chaque jour de la semaine.",
+     "text": [
+      "Une basket en cuir pour le bureau, un mocassin souple pour le soir, une sandale pour le week-end, un sabot pour la maison. Chaque modèle existe en plusieurs coloris, présentés côte à côte sur sa fiche produit.",
+      "Pour commander, choisissez votre pointure : vous réglez à la livraison."
+     ],
+     "image": {
+      "product": "crest-tabac",
+      "position": 4
+     },
+     "alt": "Les cinq coloris de la basket Crest",
+     "facts": [
+      {
+       "value": "5",
+       "label": "catégories de chaussures"
+      },
+      {
+       "value": "39 – 45",
+       "label": "pointures, selon les modèles"
+      },
+      {
+       "value": "Partout",
+       "label": "livraison au Maroc"
+      },
+      {
+       "value": "À la livraison",
+       "label": "paiement"
+      }
+     ],
+     "action": "Voir la sélection",
+     "href": "/collection/baskets-homme",
+     "surface": false
+    },
+    {
+     "type": "categories",
+     "heading": "nos catégories",
+     "items": [
+      {
+       "collection": "baskets-homme",
+       "label": "baskets",
+       "image": {
+        "product": "basket-homme-0013-cuir-tabac",
+        "position": 1
+       }
+      },
+      {
+       "collection": "mocassins-homme",
+       "label": "mocassins",
+       "image": {
+        "product": "mocassins-souples-en-daim-5",
+        "position": 2
+       }
+      },
+      {
+       "collection": "bottines-homme",
+       "label": "bottines",
+       "image": {
+        "product": "bottine-homme-002-cuir-tabac",
+        "position": 1
+       }
+      },
+      {
+       "collection": "sandales-homme",
+       "label": "sandales",
+       "image": {
+        "product": "013-sandales-homme-en-cuir-noir",
+        "position": 1
+       }
+      },
+      {
+       "collection": "sabot-homme",
+       "label": "sabots",
+       "image": {
+        "product": "sabot-pantoufle-marron-001",
+        "position": 1
+       }
+      }
+     ]
+    },
+    {
+     "type": "services",
+     "items": [
+      {
+       "icon": "truck",
+       "title": "Livraison partout au Maroc",
+       "text": []
+      },
+      {
+       "icon": "cash",
+       "title": "Paiement à la livraison",
+       "text": [
+        "Vous réglez à la réception de votre commande."
+       ]
+      },
+      {
+       "icon": "whatsapp",
+       "title": "Conseil sur WhatsApp",
+       "text": [
+        "Une question sur une pointure ou un modèle : écrivez-nous."
+       ]
+      }
+     ]
+    },
+    {
+     "type": "cards",
+     "heading": "pour bien choisir",
+     "items": [
+      {
+       "href": "/page/guide-des-pointures",
+       "eyebrow": "Guide",
+       "title": "Trouver sa pointure",
+       "text": "Mesurer son pied, comparer les catégories.",
+       "image": {
+        "product": "basket-homme-0012-cuir-tabac",
+        "position": 2
+       },
+       "photo": false
+      },
+      {
+       "href": "/page/entretien",
+       "eyebrow": "Conseils",
+       "title": "Entretenir sa paire",
+       "text": "Cuir, daim, nubuck, mesh : les bons gestes.",
+       "image": {
+        "product": "mocassins-souples-en-cuir",
+        "position": 3
+       },
+       "photo": true
+      },
+      {
+       "href": "/page/faq",
+       "eyebrow": "Aide",
+       "title": "Questions fréquentes",
+       "text": "Commande, paiement, livraison, pointures.",
+       "image": {
+        "product": "basket-homme-004-cuir-blanc",
+        "position": 2
+       },
+       "photo": true
+      }
+     ]
+    }
+   ]
+  },
+  "guide-des-pointures": {
+   "title": "Guide des pointures",
+   "sections": [
+    {
+     "type": "pageHero",
+     "eyebrow": "Guide",
+     "title": "trouver sa pointure",
+     "intro": [
+      "Nos modèles sont proposés du 39 au 45 selon les catégories. Mesurez votre pied en cinq minutes, puis vérifiez les pointures disponibles avant de commander."
+     ],
+     "image": {
+      "product": "basket-homme-0012-cuir-tabac",
+      "position": 2
+     },
+     "alt": "Paire de baskets en cuir tabac vue de dessus"
+    },
+    {
+     "type": "steps",
+     "anchor": "mesurer",
+     "eyebrow": "Étape par étape",
+     "heading": "mesurer son pied",
+     "text": [
+      "Il vous faut une feuille A4, un crayon et une règle. Mesurez les deux pieds : ils ont rarement exactement la même longueur."
+     ],
+     "surface": true,
+     "columns": true,
+     "items": [
+      {
+       "title": "Posez la feuille contre un mur",
+       "text": [
+        "Sur un sol dur, le bord court de la feuille collé au mur."
+       ],
+       "image": null,
+       "href": null
+      },
+      {
+       "title": "Talon contre le mur, debout",
+       "text": [
+        "Pied à plat sur la feuille, le poids réparti sur les deux jambes, avec les chaussettes que vous porterez."
+       ],
+       "image": null,
+       "href": null
+      },
+      {
+       "title": "Marquez l'orteil le plus long",
+       "text": [
+        "Crayon bien vertical. Ce n'est pas toujours le gros orteil."
+       ],
+       "image": null,
+       "href": null
+      },
+      {
+       "title": "Mesurez en centimètres",
+       "text": [
+        "Du bord de la feuille au trait. Gardez la plus grande des deux mesures, prise de préférence en fin de journée."
+       ],
+       "image": null,
+       "href": null
+      }
+     ]
+    },
+    {
+     "type": "sizes",
+     "heading": "les pointures, par catégorie",
+     "text": [
+      "Calculé à partir du catalogue en ligne. Touchez une pointure en stock pour voir les modèles disponibles dans cette taille."
+     ],
+     "note": [
+      "Les pointures indiquées sont celles des fiches produit. Une pointure barrée sur une fiche est épuisée pour ce modèle."
+     ],
+     "items": [
+      {
+       "collection": "baskets-homme",
+       "label": "Baskets"
+      },
+      {
+       "collection": "mocassins-homme",
+       "label": "Mocassins"
+      },
+      {
+       "collection": "bottines-homme",
+       "label": "Bottines"
+      },
+      {
+       "collection": "sandales-homme",
+       "label": "Sandales"
+      },
+      {
+       "collection": "sabot-homme",
+       "label": "Sabots"
+      }
+     ]
+    },
+    {
+     "type": "steps",
+     "anchor": "choisir",
+     "eyebrow": "Avant de commander",
+     "heading": "bien choisir",
+     "text": [],
+     "surface": false,
+     "columns": false,
+     "items": [
+      {
+       "title": "Partez de la paire que vous portez le plus",
+       "text": [
+        "Regardez la pointure inscrite à l'intérieur de vos chaussures habituelles : c'est le meilleur point de départ, à comparer avec votre mesure."
+       ],
+       "image": {
+        "product": "basket-homme-0011-cuir-blanc",
+        "position": 1
+       },
+       "cta": "Voir les baskets",
+       "href": "/collection/baskets-homme"
+      },
+      {
+       "title": "Mocassins et sabots se portent pieds nus ou presque",
+       "text": [
+        "Mesurez votre pied avec des chaussettes fines, comme vous les porterez."
+       ],
+       "image": {
+        "product": "mocassins-souples-en-daim-bleu-marine",
+        "position": 1
+       },
+       "cta": "Voir les mocassins",
+       "href": "/collection/mocassins-homme"
+      },
+      {
+       "title": "Un doute ? Demandez-nous",
+       "text": [
+        "Envoyez-nous sur WhatsApp le modèle qui vous intéresse et la longueur de votre pied : nous vous répondons avant que vous commandiez."
+       ],
+       "image": null,
+       "cta": "Écrire sur WhatsApp",
+       "href": "https://wa.me/212633909991"
+      }
+     ]
+    },
+    {
+     "type": "faq",
+     "heading": "questions sur les pointures",
+     "text": [],
+     "items": [
+      {
+       "q": "Que signifie une pointure barrée sur une fiche produit ?",
+       "a": [
+        "Elle est épuisée pour ce modèle. Les autres pointures restent disponibles à la commande."
+       ]
+      },
+      {
+       "q": "Comment voir uniquement les modèles disponibles dans ma pointure ?",
+       "a": [
+        "Sur chaque catégorie, touchez votre pointure dans la barre au-dessus des produits. Votre choix est aussi repéré d'un point sur les fiches produit."
+       ]
+      },
+      {
+       "q": "Toutes les catégories vont-elles du 39 au 45 ?",
+       "a": [
+        "Non : consultez le tableau ci-dessus, calculé à partir du catalogue, qui se met à jour avec les stocks."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "entretien": {
+   "title": "Entretien",
+   "sections": [
+    {
+     "type": "pageHero",
+     "eyebrow": "Conseils",
+     "title": "entretenir sa paire",
+     "intro": [
+      "Cuir lisse, daim, nubuck ou mesh : chaque matière se nettoie différemment. Repérez la matière dans le titre ou la description de votre modèle, puis suivez les gestes correspondants."
+     ],
+     "image": {
+      "product": "mocassins-souples-en-cuir",
+      "position": 3
+     },
+     "alt": "Mocassins en cuir bordeaux avec embauchoirs"
+    },
+    {
+     "type": "steps",
+     "anchor": "matieres",
+     "eyebrow": "Par matière",
+     "heading": "le bon geste pour chaque matière",
+     "text": [
+      "Testez toujours un produit d'entretien sur une petite zone peu visible avant de l'appliquer sur toute la chaussure."
+     ],
+     "surface": false,
+     "columns": false,
+     "items": [
+      {
+       "title": "Cuir lisse",
+       "text": [
+        "Dépoussiérez avec un chiffon doux ou une brosse à poils souples. Appliquez ensuite une crème nourrissante incolore ou de la même teinte, en couche fine, laissez pénétrer puis lustrez.",
+        "Bottines, baskets en cuir et mocassins en cuir sont concernés."
+       ],
+       "image": {
+        "product": "bottine-homme-002-cuir-tabac",
+        "position": 1
+       },
+       "cta": "Les bottines en cuir",
+       "href": "/collection/bottines-homme"
+      },
+      {
+       "title": "Daim et nubuck",
+       "text": [
+        "Jamais d'eau ni de crème : utilisez une brosse spéciale daim (crêpe ou laiton) à sec, dans un seul sens, pour relever le velours. Une gomme pour daim enlève les petites marques.",
+        "Avant la première sortie, une bombe imperméabilisante protège des taches."
+       ],
+       "image": {
+        "product": "mocassins-souples-en-daim-7",
+        "position": 1
+       },
+       "cta": "Les mocassins en daim",
+       "href": "/collection/mocassins-homme"
+      },
+      {
+       "title": "Mesh et matières synthétiques",
+       "text": [
+        "Une brosse souple et de l'eau tiède légèrement savonneuse suffisent. Tamponnez sans frotter fort, rincez avec un chiffon humide et laissez sécher à l'air libre.",
+        "C'est le cas des modèles Broski dont la fiche indique « mesh » ou « cuir synthétique »."
+       ],
+       "image": {
+        "product": "eclipse-bleu",
+        "position": 1
+       },
+       "cta": "Les modèles Broski",
+       "href": "/collection/vendor:Broski"
+      },
+      {
+       "title": "Semelles blanches",
+       "text": [
+        "Une brosse à dents et un peu de savon de Marseille dilué retirent l'essentiel des traces. Insistez sur les bords, essuyez, puis laissez sécher."
+       ],
+       "image": {
+        "product": "zenith-blanche",
+        "position": 1
+       },
+       "cta": "Les baskets blanches",
+       "href": "/recherche?q=blanc"
+      },
+      {
+       "title": "Sandales et sabots",
+       "text": [
+        "Essuyez les semelles intérieures avec un chiffon à peine humide et laissez-les sécher à l'ombre. Pour les sabots en feutre, une brosse souple suffit."
+       ],
+       "image": {
+        "product": "sabot-pantoufle-gris-001",
+        "position": 1
+       },
+       "cta": "Les sabots",
+       "href": "/collection/sabot-homme"
+      }
+     ]
+    },
+    {
+     "type": "steps",
+     "anchor": "gestes",
+     "eyebrow": "Pour toutes les paires",
+     "heading": "les gestes de base",
+     "text": [],
+     "surface": true,
+     "columns": true,
+     "items": [
+      {
+       "title": "Alternez",
+       "text": [
+        "Laissez reposer une paire un jour entre deux ports : elle sèche et garde sa forme."
+       ],
+       "image": null,
+       "href": null
+      },
+      {
+       "title": "Séchez loin de la chaleur",
+       "text": [
+        "Jamais sur un radiateur ni au soleil direct. Du papier journal à l'intérieur absorbe l'humidité."
+       ],
+       "image": null,
+       "href": null
+      },
+      {
+       "title": "Gardez la forme",
+       "text": [
+        "Des embauchoirs ou du papier froissé évitent les plis, surtout pour les mocassins."
+       ],
+       "image": null,
+       "href": null
+      },
+      {
+       "title": "Rangez à l'abri",
+       "text": [
+        "Dans un sac en tissu ou leur boîte, à l'abri de la lumière et de la poussière."
+       ],
+       "image": null,
+       "href": null
+      }
+     ]
+    },
+    {
+     "type": "cards",
+     "heading": "à lire",
+     "items": [
+      {
+       "href": "https://zayou-5.myshopify.com/blogs/infos/comment-entretenir-vos-chaussures-en-cuir-pour-quelles-demeurent-comme-neuves",
+       "eyebrow": "Journal",
+       "title": "Comment entretenir vos chaussures en cuir",
+       "text": "Nettoyage, nourrissage, rangement : la méthode complète.",
+       "image": {
+        "product": "mocassins-souples-en-cuir",
+        "position": 6
+       },
+       "photo": false
+      },
+      {
+       "href": "https://zayou-5.myshopify.com/blogs/infos/les-differents-types-de-cuir-utilises-dans-la-fabrication-des-chaussures",
+       "eyebrow": "Journal",
+       "title": "Les différents types de cuir",
+       "text": "Reconnaître les cuirs utilisés en chaussure.",
+       "image": {
+        "product": "crest-kaki",
+        "position": 2
+       },
+       "photo": true
+      },
+      {
+       "href": "https://zayou-5.myshopify.com/blogs/infos/les-chaussures-en-cuir-histoire-et-evolution",
+       "eyebrow": "Journal",
+       "title": "Les chaussures en cuir : histoire et évolution",
+       "text": "Des premières sandales aux modèles d'aujourd'hui.",
+       "image": {
+        "product": "sandales-en-cuir-noir",
+        "position": 1
+       },
+       "photo": false
+      }
+     ]
+    }
+   ]
+  },
+  "inspirations": {
+   "title": "Inspirations",
+   "sections": [
+    {
+     "type": "pageHero",
+     "eyebrow": "Inspirations",
+     "title": "comment porter nos modèles",
+     "intro": [
+      "Cinq façons de porter baskets, mocassins, bottines et sandales, avec les modèles à commander pour chacune."
+     ],
+     "image": {
+      "product": "mocassins-souples-en-daim-5",
+      "position": 1
+     },
+     "alt": "Mocassins en daim marron portés avec un pantalon gris clair"
+    },
+    {
+     "type": "styles",
+     "layout": "stacked",
+     "heading": "cinq tenues, cinq paires",
+     "action": "",
+     "href": null,
+     "items": [
+      {
+       "id": "look-1",
+       "title": "le casual net",
+       "text": [
+        "La basket blanche en cuir est la paire la plus facile à porter. Associez-la à un pantalon droit qui tombe juste au-dessus de la chaussure, à un chino beige ou à un jean brut, avec une chemise en oxford ou un polo uni.",
+        "Gardez les semelles propres : c'est ce qui fait la différence."
+       ],
+       "image": {
+        "product": "basket-homme-007-cuir-blanc",
+        "position": 2
+       },
+       "alt": "Baskets blanches en cuir portées avec un pantalon gris",
+       "products": [
+        "basket-homme-007-cuir-blanc",
+        "basket-homme-0011-cuir-blanc",
+        "zenith-blanche",
+        "basket-homme-004-cuir-blanc"
+       ],
+       "cta": "Toutes les baskets",
+       "href": "/collection/baskets-homme"
+      },
+      {
+       "id": "look-2",
+       "title": "le mocassin souple",
+       "text": [
+        "Le mocassin se porte avec un pantalon légèrement raccourci, qui laisse voir la cheville : chino, lin, ou pantalon de costume sans revers. Des chaussettes invisibles gardent la ligne nette.",
+        "Le daim beige ou tabac adoucit les tenues claires ; le bleu marine et le noir s'accordent avec les tons sombres."
+       ],
+       "image": {
+        "product": "mocassins-souples-en-daim-9",
+        "position": 5
+       },
+       "alt": "Mocassins en daim beige portés avec un pantalon gris clair",
+       "products": [
+        "mocassins-souples-en-daim-9",
+        "mocassins-souples-en-daim-3",
+        "mocassins-souples-en-daim-bleu-marine",
+        "mocassins-souples-en-daim-7"
+       ],
+       "cta": "Tous les mocassins",
+       "href": "/collection/mocassins-homme"
+      },
+      {
+       "id": "look-3",
+       "title": "la bottine chelsea",
+       "text": [
+        "La bottine chelsea s'enfile sans lacets et se porte sous un jean brut ou un pantalon en laine, l'ourlet posé sur la tige. Le noir accompagne une veste sombre le soir ; le tabac réchauffe un jean et un pull écru."
+       ],
+       "image": {
+        "product": "bottine-homme-002-cuir-tabac",
+        "position": 1
+       },
+       "alt": "Bottine chelsea en cuir tabac",
+       "products": [
+        "bottine-homme-002-cuir-tabac",
+        "bottine-homme-001-cuir-noir-1",
+        "bottine-homme-002-cuir-noir-1"
+       ],
+       "cta": "Toutes les bottines",
+       "href": "/collection/bottines-homme"
+      },
+      {
+       "id": "look-4",
+       "title": "l'urbain technique",
+       "text": [
+        "Mesh, semelles épaisses et coloris contrastés : les modèles Broski Eclipse et Nomad vont avec un jogging ajusté, un cargo ou un jean brut. Reprenez une couleur de la basket dans la tenue (un sweat vert avec l'Eclipse verte, par exemple)."
+       ],
+       "image": {
+        "product": "eclipse-beige",
+        "position": 4
+       },
+       "alt": "Semelle à effet éclaboussures de la basket Eclipse",
+       "products": [
+        "eclipse-bleu",
+        "eclipse-vert",
+        "nomad-gris",
+        "eclipse-beige"
+       ],
+       "cta": "Voir les modèles Broski",
+       "href": "/collection/vendor:Broski"
+      },
+      {
+       "id": "look-5",
+       "title": "les beaux jours",
+       "text": [
+        "Les sandales en cuir se portent avec un pantalon en lin, un chino court ou un short à pinces. Le noir va avec tout ; le tabac et le daim réchauffent les tenues blanches et beiges."
+       ],
+       "image": {
+        "product": "sandales-en-cuir-noir-007",
+        "position": 1
+       },
+       "alt": "Sandales en cuir noir portées avec un pantalon beige",
+       "products": [
+        "013-sandales-homme-en-cuir-noir",
+        "sandales-en-cuir-marron-7",
+        "sandales-homme-009-daim-tabac",
+        "sandales-en-cuir-noir-007"
+       ],
+       "cta": "Toutes les sandales",
+       "href": "/collection/sandales-homme"
+      }
+     ]
+    },
+    {
+     "type": "cards",
+     "heading": "avant de commander",
+     "items": [
+      {
+       "href": "/page/guide-des-pointures",
+       "eyebrow": "Guide",
+       "title": "Trouver sa pointure",
+       "text": "Mesurer son pied et voir les pointures en stock.",
+       "image": {
+        "product": "basket-homme-0012-cuir-tabac",
+        "position": 2
+       },
+       "photo": false
+      },
+      {
+       "href": "/page/entretien",
+       "eyebrow": "Conseils",
+       "title": "Entretenir sa paire",
+       "text": "Les bons gestes selon la matière.",
+       "image": {
+        "product": "mocassins-souples-en-cuir",
+        "position": 3
+       },
+       "photo": true
+      },
+      {
+       "href": "/page/faq",
+       "eyebrow": "Aide",
+       "title": "Questions fréquentes",
+       "text": "Commande, paiement, livraison.",
+       "image": {
+        "product": "basket-homme-004-cuir-blanc",
+        "position": 2
+       },
+       "photo": true
+      }
+     ]
+    }
+   ]
+  },
+  "faq": {
+   "title": "Questions fréquentes",
+   "sections": [
+    {
+     "type": "pageHero",
+     "eyebrow": "Aide",
+     "title": "questions fréquentes",
+     "intro": [
+      "Commande, paiement, livraison et pointures. Vous ne trouvez pas votre réponse ? Écrivez-nous sur WhatsApp."
+     ],
+     "image": null
+    },
+    {
+     "type": "faq",
+     "heading": "commander & payer",
+     "text": [],
+     "items": [
+      {
+       "q": "Comment passer commande ?",
+       "a": [
+        "Sur la fiche du modèle, choisissez votre pointure puis le bouton de commande. Un formulaire court vous demande votre nom, votre téléphone, votre ville et votre adresse de livraison."
+       ]
+      },
+      {
+       "q": "Comment payer ma commande ?",
+       "a": [
+        "Le paiement se fait à la livraison : vous réglez à la réception de votre commande."
+       ]
+      },
+      {
+       "q": "Livrez-vous dans toutes les villes ?",
+       "a": [
+        "Oui, nous livrons partout au Maroc."
+       ]
+      },
+      {
+       "q": "Puis-je commander plusieurs paires en une fois ?",
+       "a": [
+        "Oui : ajoutez chaque paire au panier avec sa pointure, puis validez depuis le panier."
+       ]
+      }
+     ]
+    },
+    {
+     "type": "faq",
+     "heading": "pointures & modèles",
+     "text": [
+      "Voir aussi le guide des pointures."
+     ],
+     "items": [
+      {
+       "q": "Quelles pointures proposez-vous ?",
+       "a": [
+        "Du 39 au 45 selon les modèles. Le guide des pointures indique, catégorie par catégorie, les pointures proposées et celles en stock."
+       ]
+      },
+      {
+       "q": "Comment choisir ma pointure ?",
+       "a": [
+        "Mesurez votre pied en suivant notre guide et comparez avec la pointure de vos chaussures habituelles. En cas de doute, envoyez-nous le modèle et votre mesure sur WhatsApp avant de commander."
+       ]
+      },
+      {
+       "q": "Une pointure apparaît barrée : est-elle disponible ?",
+       "a": [
+        "Non, une pointure barrée est épuisée pour ce modèle. Les autres pointures restent disponibles."
+       ]
+      },
+      {
+       "q": "Le modèle existe-t-il dans une autre couleur ?",
+       "a": [
+        "Les coloris d'un même modèle sont affichés sur sa fiche, sous « Couleur ». La pointure choisie est conservée quand vous passez d'un coloris à l'autre."
+       ]
+      },
+      {
+       "q": "Comment entretenir mes chaussures ?",
+       "a": [
+        "Cela dépend de la matière (cuir lisse, daim, nubuck, mesh) : suivez nos conseils d'entretien."
+       ]
+      }
+     ]
+    },
+    {
+     "type": "services",
+     "items": [
+      {
+       "icon": "whatsapp",
+       "title": "WhatsApp",
+       "text": [
+        "+212 633 909 991"
+       ]
+      },
+      {
+       "icon": "phone",
+       "title": "Téléphone",
+       "text": [
+        "+212 644-522326"
+       ]
+      },
+      {
+       "icon": "chat",
+       "title": "Formulaire",
+       "text": [
+        "Page contact"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "contact": {
+   "title": "Contact",
+   "sections": [
+    {
+     "type": "pageHero",
+     "eyebrow": "Aide",
+     "title": "nous contacter",
+     "intro": [
+      "Une question sur une pointure, un modèle ou une commande ? Le plus rapide est WhatsApp. Vous pouvez aussi nous laisser un message ci-dessous."
+     ],
+     "image": null
+    },
+    {
+     "type": "contact"
+    },
+    {
+     "type": "cards",
+     "heading": "peut-être déjà répondu",
+     "items": [
+      {
+       "href": "/page/faq",
+       "eyebrow": "Aide",
+       "title": "Questions fréquentes",
+       "text": "Commande, paiement, livraison, pointures.",
+       "image": {
+        "product": "basket-homme-004-cuir-blanc",
+        "position": 2
+       },
+       "photo": true
+      },
+      {
+       "href": "/page/guide-des-pointures",
+       "eyebrow": "Guide",
+       "title": "Trouver sa pointure",
+       "text": "Mesurer son pied et voir les pointures en stock.",
+       "image": {
+        "product": "basket-homme-0012-cuir-tabac",
+        "position": 2
+       },
+       "photo": false
+      },
+      {
+       "href": "/page/entretien",
+       "eyebrow": "Conseils",
+       "title": "Entretenir sa paire",
+       "text": "Les bons gestes selon la matière.",
+       "image": {
+        "product": "mocassins-souples-en-cuir",
+        "position": 3
+       },
+       "photo": true
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "collections": {
+  "baskets-homme": {
+   "title": "baskets",
+   "text": [
+    "Cuir, daim, nubuck et mesh : de la basket blanche minimaliste aux modèles Broski, du 39 au 45."
+   ],
+   "image": {
+    "product": "crest-tabac",
+    "position": 4
+   }
+  },
+  "mocassins-homme": {
+   "title": "mocassins",
+   "text": [
+    "Mocassins souples en daim et en cuir, à enfiler avec ou sans chaussettes invisibles. Du 39 au 43."
+   ],
+   "image": {
+    "product": "mocassins-souples-en-daim-3",
+    "position": 2
+   }
+  },
+  "bottines-homme": {
+   "title": "bottines",
+   "text": [
+    "Bottines chelsea en cuir, noires ou tabac, du 39 au 44."
+   ],
+   "image": {
+    "product": "bottine-homme-002-cuir-tabac",
+    "position": 2
+   }
+  },
+  "sandales-homme": {
+   "title": "sandales",
+   "text": [
+    "Sandales en cuir et en daim, à brides croisées ou en H, du 40 au 45."
+   ],
+   "image": {
+    "product": "sandales-en-cuir-noir-007",
+    "position": 1
+   }
+  },
+  "sabot-homme": {
+   "title": "sabots",
+   "text": [
+    "Sabots pantoufles pour la maison, en quatre coloris."
+   ],
+   "image": {
+    "product": "sabot-pantoufle-gris-001",
+    "position": 2
+   }
+  },
+  "parfums": {
+   "title": "parfums",
+   "text": [
+    "Une sélection d'eaux de parfum pour homme et mixtes."
+   ],
+   "image": null
+  }
+ },
+ "settings": {
+  "whatsapp": "+212633909991",
+  "phone": "+212 644-522326",
+  "delivery": [
+   "Livraison partout au Maroc. Paiement à la livraison : vous réglez à la réception de votre commande."
+  ],
+  "sizes": [
+   "39",
+   "40",
+   "41",
+   "42",
+   "43",
+   "44",
+   "45"
+  ]
+ },
+ "menu": [
+  [
+   "baskets-homme",
+   "Baskets"
+  ],
+  [
+   "mocassins-homme",
+   "Mocassins"
+  ],
+  [
+   "bottines-homme",
+   "Bottines"
+  ],
+  [
+   "sandales-homme",
+   "Sandales"
+  ],
+  [
+   "sabot-homme",
+   "Sabots"
+  ],
+  [
+   "parfums",
+   "Parfums"
+  ]
+ ]
+}
