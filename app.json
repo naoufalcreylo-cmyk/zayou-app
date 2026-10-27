@@ -5,7 +5,10 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "zayou",
+    "scheme": [
+      "zayou",
+      "shop.62344691777.app"
+    ],
     "userInterfaceStyle": "light",
     "ios": {
       "icon": "./assets/images/icon.png",
@@ -38,7 +41,8 @@
           "image": "./assets/brand/logo.png",
           "imageWidth": 160
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true,
@@ -47,7 +51,9 @@
     "extra": {
       "shopDomain": "zayou-5.myshopify.com",
       "apiVersion": "2025-10",
-      "storefrontToken": ""
+      "storefrontToken": "",
+      "shopId": "62344691777",
+      "customerAccountClientId": ""
     }
   }
 }

@@ -27,7 +27,7 @@ export default function TabsLayout() {
           </View>
         ),
       }} />
-      <Tabs.Screen name="infos" options={{ title: 'Infos', tabBarIcon: ({ color }) => <Icon name="info" color={color as string} /> }} />
+      <Tabs.Screen name="compte" options={{ title: 'Compte', tabBarIcon: ({ color }) => <Icon name="account" color={color as string} /> }} />
     </Tabs>
   );
 }

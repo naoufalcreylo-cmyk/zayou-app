@@ -3,7 +3,7 @@ import Svg, { Circle, Path, Rect } from 'react-native-svg';
 
 import { C } from '@/theme';
 
-export type IconName = 'home' | 'grid' | 'search' | 'bag' | 'info' | 'close' | 'plus' | 'minus' | 'arrow-right' | 'arrow-left' | 'chevron-right' | 'truck' | 'cash' | 'whatsapp' | 'phone' | 'ruler' | 'check' | 'filter';
+export type IconName = 'home' | 'grid' | 'search' | 'bag' | 'info' | 'account' | 'heart' | 'heart-filled' | 'box' | 'pin' | 'logout' | 'close' | 'plus' | 'minus' | 'arrow-right' | 'arrow-left' | 'chevron-right' | 'truck' | 'cash' | 'whatsapp' | 'phone' | 'ruler' | 'check' | 'filter';
 
 export function Icon({ name, size = 22, color = C.ink, strokeWidth = 1.5 }: { name: IconName; size?: number; color?: string; strokeWidth?: number }) {
   const p = { stroke: color, strokeWidth, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, fill: 'none' };
@@ -14,6 +14,11 @@ export function Icon({ name, size = 22, color = C.ink, strokeWidth = 1.5 }: { na
       {name === 'search' && <><Circle {...p} cx={10.5} cy={10.5} r={6.5} /><Path {...p} d="M15.5 15.5L20 20" /></>}
       {name === 'bag' && <><Path {...p} d="M5 8.5h14l-1 11.5H6L5 8.5z" /><Path {...p} d="M9 8.5V7a3 3 0 016 0v1.5" /></>}
       {name === 'info' && <><Circle {...p} cx={12} cy={12} r={8.5} /><Path {...p} d="M12 11v5.5M12 7.8v.2" /></>}
+      {name === 'account' && <><Circle {...p} cx={12} cy={8.5} r={4} /><Path {...p} d="M4.5 20c1.2-3.6 4-5.5 7.5-5.5s6.3 1.9 7.5 5.5" /></>}
+      {(name === 'heart' || name === 'heart-filled') && <Path {...p} fill={name === 'heart-filled' ? color : 'none'} d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0112 7.6 4.3 4.3 0 0119.5 10c0 5.4-7.5 10-7.5 10z" />}
+      {name === 'box' && <><Path {...p} d="M4 8l8-4 8 4v8l-8 4-8-4z" /><Path {...p} d="M4 8l8 4 8-4M12 12v8" /></>}
+      {name === 'pin' && <><Path {...p} d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" /><Circle {...p} cx={12} cy={10} r={2.3} /></>}
+      {name === 'logout' && <><Path {...p} d="M14 4h4.5A1.5 1.5 0 0120 5.5v13a1.5 1.5 0 01-1.5 1.5H14" /><Path {...p} d="M10 8l-4 4 4 4M6 12h10" /></>}
       {name === 'close' && <Path {...p} d="M6 6l12 12M18 6L6 18" />}
       {name === 'plus' && <Path {...p} d="M12 5v14M5 12h14" />}
       {name === 'minus' && <Path {...p} d="M5 12h14" />}

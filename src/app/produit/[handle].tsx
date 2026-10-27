@@ -8,7 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Icon } from '@/components/Icon';
 import { Rail } from '@/components/Sections';
 import { SizePicker } from '@/components/SizePicker';
-import { Button, Empty, Price, Tile } from '@/components/ui';
+import { Button, Empty, HeartButton, Price, Tile } from '@/components/ui';
 import content from '@/content/sections.json';
 import { colorway } from '@/lib/colorways';
 import { getProduct, getProductsByHandle, getRecommendations, Product, ProductCard as P, sized, sizeOf, sizeOptionName, Variant } from '@/lib/shopify';
@@ -86,7 +86,10 @@ export default function ProductScreen() {
         <View style={{ paddingHorizontal: S.edge, gap: 20, paddingTop: 16 }}>
           <View style={{ gap: 6 }}>
             {!/bon ?plan/i.test(p.vendor) && p.vendor ? <Text style={T.label}>{p.vendor}</Text> : null}
-            <Text style={st.title} accessibilityRole="header">{p.title}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
+              <Text style={[st.title, { flex: 1 }]} accessibilityRole="header">{p.title}</Text>
+              <HeartButton handle={p.handle} title={p.title} style={{ borderWidth: 1, borderColor: C.line }} />
+            </View>
             <Price price={price} compare={compare} size={17} showSaving />
           </View>
 

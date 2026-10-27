@@ -28,13 +28,25 @@ Les textes, choix de produits et photos (accueil, guide des pointures, FAQ, entr
 - `storefrontToken` : vide = accès sans jeton (suffisant pour tester). Pour la production, coller le **jeton public Storefront** du canal *Headless* de Shopify (limites de requêtes plus élevées).
 - Identifiants : `ma.zayou.app` (iOS et Android).
 
+## Compte client (Shopify « nouveaux comptes clients »)
+Connexion par code e-mail via la **Customer Account API** (OAuth + PKCE, client public). À configurer dans Shopify : *Canaux de vente › Headless › (storefront) › Customer Account API* :
+- Type de client : **Public**
+- URL de rappel (callback) : **`shop.62344691777.app://callback`**
+- Copier le **Client ID** dans `app.json › expo.extra.customerAccountClientId`.
+
+La connexion ne fonctionne pas dans Expo Go (Shopify impose le schéma `shop.62344691777.app`) : il faut une **version de développement** (`npx eas-cli build --profile development`).
+Comptes : commandes (suivi via la page de statut Shopify), adresses (ajout, modification, suppression, par défaut), favoris (sur l’appareil), déconnexion, demande de suppression du compte (WhatsApp, à traiter dans l’admin : *Clients › client › Effacer les données personnelles*).
+
 ## Structure
 ```
-src/app/(tabs)/       Accueil, Boutique, Recherche, Panier, Infos
+src/app/(tabs)/       Accueil, Boutique, Recherche, Panier, Compte
+src/app/compte/       commandes, détail commande, adresses
+src/app/favoris.tsx   favoris
 src/app/collection/   catégories (filtre pointure, en stock, tri — sur l'appareil)
 src/app/produit/      fiche produit (photos originales, coloris, pointures, ajout au panier)
 src/app/page/         pages d'info (mêmes contenus que le site)
 src/lib/shopify.ts    client Storefront API (produits, collections, recherche, panier)
-src/state/            panier (Shopify) et pointure mémorisée
+src/lib/account.ts    Customer Account API (connexion, commandes, adresses)
+src/state/            panier (Shopify), compte, favoris, pointure mémorisée
 src/components/       sections, cartes produit, sélecteur de pointure, ajout rapide
 ```

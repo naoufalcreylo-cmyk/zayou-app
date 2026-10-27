@@ -6,6 +6,7 @@ import { ActivityIndicator, Pressable, PressableProps, StyleProp, StyleSheet, Te
 
 import { colorway } from '@/lib/colorways';
 import { Money, money, onSale, ProductCard as P, sized } from '@/lib/shopify';
+import { useWishlist } from '@/state/wishlist';
 import { C, F, R, S, T } from '@/theme';
 
 import { Icon, IconName } from './Icon';
@@ -84,6 +85,17 @@ export function Tile({ uri, width = 600, packshot, style, label }: { uri?: strin
 }
 
 // ---------- product card ----------
+export function HeartButton({ handle, title, style }: { handle: string; title: string; style?: StyleProp<ViewStyle> }) {
+  const { has, toggle } = useWishlist();
+  const on = has(handle);
+  return (
+    <Pressable onPress={() => toggle(handle)} hitSlop={6} accessibilityRole="button" accessibilityState={{ selected: on }}
+      accessibilityLabel={on ? `Retirer ${title} des favoris` : `Ajouter ${title} aux favoris`} style={[ui.heart, style]}>
+      <Icon name={on ? 'heart-filled' : 'heart'} size={18} />
+    </Pressable>
+  );
+}
+
 export function ProductCard({ product, width, onQuickAdd }: { product: P; width: number; onQuickAdd?: (p: P) => void }) {
   const way = colorway(product.handle);
   const ways = way?.siblings.length ?? 0;
@@ -110,6 +122,7 @@ export function ProductCard({ product, width, onQuickAdd }: { product: P; width:
           </View>
         </Pressable>
       </Link>
+      <HeartButton handle={product.handle} title={product.title} style={{ position: 'absolute', top: 8, right: 8 }} />
       {onQuickAdd && product.availableForSale ? (
         <Pressable accessibilityRole="button" accessibilityLabel={`Choisir une pointure — ${product.title}`} onPress={() => onQuickAdd(product)} hitSlop={6} style={[ui.quick, { top: width - 48 }]}>
           <Icon name="plus" size={16} />
@@ -152,5 +165,6 @@ export const ui = StyleSheet.create({
   cardTitle: { fontFamily: F.medium, fontSize: 14, lineHeight: 19, color: C.ink },
   ways: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   swatch: { width: 11, height: 11, borderRadius: 6, borderWidth: StyleSheet.hairlineWidth, borderColor: 'rgba(0,0,0,0.2)' },
+  heart: { width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.92)', alignItems: 'center', justifyContent: 'center' },
   quick: { position: 'absolute', right: 8, width: 40, height: 40, borderRadius: 20, backgroundColor: C.bg, alignItems: 'center', justifyContent: 'center', shadowColor: '#000', shadowOpacity: 0.08, shadowRadius: 3, shadowOffset: { width: 0, height: 1 }, elevation: 2 },
 });
