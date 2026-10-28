@@ -90,7 +90,7 @@ export function HeartButton({ handle, title, style }: { handle: string; title: s
   const on = has(handle);
   return (
     <Pressable onPress={() => toggle(handle)} hitSlop={6} accessibilityRole="button" accessibilityState={{ selected: on }}
-      accessibilityLabel={on ? `Retirer ${title} des favoris` : `Ajouter ${title} aux favoris`} style={[ui.heart, style]}>
+      accessibilityLabel={on ? `Retirer ${title} de la liste d’envies` : `Ajouter ${title} à la liste d’envies`} style={[ui.heart, style]}>
       <Icon name={on ? 'heart-filled' : 'heart'} size={18} />
     </Pressable>
   );

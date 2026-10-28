@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { Linking, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 import { colorway } from '@/lib/colorways';
-import { getCollectionsSummary, getCollectionVariants, getProductImages, getProductsByHandle, Image as Img, ProductCard as P, sized, sizeOf, sizeOptionName } from '@/lib/shopify';
+import { getCollectionsSummary, getCollectionVariants, getListing, getProductImages, getProductsByHandle, Image as Img, ProductCard as P, sized, sizeOf, sizeOptionName } from '@/lib/shopify';
 import { useSize } from '@/state/size';
 import { C, F, R, S, T } from '@/theme';
 
@@ -70,6 +70,7 @@ function SectionView({ s, data, onQuickAdd }: { s: Sec; data: Data; onQuickAdd: 
     case 'pageHero': return <PageHero s={s} data={data} />;
     case 'categories': return <Categories s={s} data={data} />;
     case 'rail': return <Rail title={s.heading} handles={s.products} data={data} action={s.action} href={s.href} onQuickAdd={onQuickAdd} />;
+    case 'listing': return <ListingRail s={s} onQuickAdd={onQuickAdd} />;
     case 'styles': return <Styles s={s} data={data} />;
     case 'sizeFinder': return <SizeFinder s={s} />;
     case 'spotlight': return <Spotlight s={s} data={data} />;
@@ -153,6 +154,17 @@ export function Rail({ title, handles, products, data, action, href, onQuickAdd 
       </ScrollView>
     </View>
   );
+}
+
+/** Rail filled from a live listing (best sellers, déstockage, a collection): first products in stock; « Voir tout » opens the full listing. */
+function ListingRail({ s, onQuickAdd }: { s: Sec; onQuickAdd: (p: P) => void }) {
+  const [list, setList] = useState<P[]>([]);
+  useEffect(() => {
+    let alive = true;
+    getListing(s.listing).then(d => { if (alive) setList((d?.products ?? []).filter(p => p.availableForSale).slice(0, s.limit ?? 10)); }).catch(() => {});
+    return () => { alive = false; };
+  }, [s.listing, s.limit]);
+  return <Rail title={s.heading} products={list} action={s.action ?? 'Voir tout'} href={`/collection/${s.listing}`} onQuickAdd={onQuickAdd} />;
 }
 
 // ---------- styles: tabs (home) or stacked (inspirations) ----------

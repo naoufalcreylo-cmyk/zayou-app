@@ -34,7 +34,8 @@ export default function RootLayout() {
               <Stack.Screen name="produit/[handle]" options={{ title: '' }} />
               <Stack.Screen name="collection/[handle]" options={{ title: '' }} />
               <Stack.Screen name="page/[slug]" options={{ title: '' }} />
-              <Stack.Screen name="favoris" options={{ title: 'Mes favoris' }} />
+              <Stack.Screen name="recherche" options={{ title: 'Recherche' }} />
+              <Stack.Screen name="panier" options={{ title: 'Panier' }} />
               <Stack.Screen name="compte/commandes" options={{ title: 'Mes commandes' }} />
               <Stack.Screen name="compte/commande/[id]" options={{ title: 'Commande' }} />
               <Stack.Screen name="compte/adresses" options={{ title: 'Mes adresses' }} />

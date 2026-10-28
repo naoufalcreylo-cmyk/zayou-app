@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { AppHeader } from '@/components/AppHeader';
 import { Icon } from '@/components/Icon';
 import { Tile } from '@/components/ui';
 import content from '@/content/sections.json';
@@ -27,7 +28,8 @@ export default function Boutique() {
   }, []);
   return (
     <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: C.bg }}>
-      <ScrollView contentContainerStyle={{ padding: S.edge, paddingBottom: 40, gap: 24 }}>
+      <AppHeader />
+      <ScrollView contentContainerStyle={{ padding: S.edge, paddingTop: 8, paddingBottom: 40, gap: 24 }}>
         <Text style={T.display} accessibilityRole="header">boutique</Text>
         <View style={st.grid}>
           {content.menu.filter(([h]) => (summary[h]?.count ?? 1) > 0).map(([h, label]) => (

@@ -1,15 +1,15 @@
-// "Compte" tab: native sign-up / login (ZAYOU account), orders, addresses, profile, wishlist, help and contact.
+// "Compte" tab: native sign-up / login (ZAYOU account), orders, addresses, profile, wishlist and contact.
 import { Link, router, useFocusEffect } from 'expo-router';
-import * as WebBrowser from 'expo-web-browser';
 import { useCallback, useState } from 'react';
 import { ActivityIndicator, Alert, Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { AppHeader } from '@/components/AppHeader';
 import { Icon, IconName } from '@/components/Icon';
 import { Button } from '@/components/ui';
 import content from '@/content/sections.json';
 import { deleteAccount, numericId, orderStatus } from '@/lib/account';
-import { money, SHOP_DOMAIN } from '@/lib/shopify';
+import { money } from '@/lib/shopify';
 import { useAccount } from '@/state/account';
 import { useWishlist } from '@/state/wishlist';
 import { C, F, R, S, T } from '@/theme';
@@ -36,13 +36,14 @@ export default function Compte() {
 
   return (
     <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: C.bg }}>
-      <ScrollView contentContainerStyle={{ padding: S.edge, paddingBottom: 40, gap: 28 }}>
+      <AppHeader />
+      <ScrollView contentContainerStyle={{ padding: S.edge, paddingTop: 8, paddingBottom: 40, gap: 28 }}>
         <Text style={T.display} accessibilityRole="header">compte</Text>
 
         {status === 'loading' ? <ActivityIndicator color={C.ink} /> : status === 'out' ? (
           <View style={st.card}>
             <Text style={T.h3}>Votre espace zayou</Text>
-            <Text style={T.bodyMuted}>Suivez vos commandes, enregistrez vos adresses et retrouvez vos favoris.</Text>
+            <Text style={T.bodyMuted}>Suivez vos commandes, enregistrez vos adresses et retrouvez votre liste d’envies.</Text>
             {configured ? (
               <View style={{ gap: 10 }}>
                 <Button label="Se connecter" onPress={() => router.push('/compte/connexion')} />
@@ -71,24 +72,15 @@ export default function Compte() {
 
         <Group title="Mon espace">
           {status === 'in' ? <Row href="/compte/commandes" icon="box" label="Mes commandes" /> : null}
-          {status === 'in' ? <Row href="/compte/adresses" icon="pin" label="Mes adresses" /> : null}
+          <Row href="/favoris" icon="heart" label={`Ma liste d’envies${handles.length ? ` (${handles.length})` : ''}`} />
+          {status === 'in' ? <Row href="/compte/adresses" icon="pin" label="Mes adresses" />
+            : configured ? <Row href="/compte/connexion" icon="pin" label="Mes adresses" hint="Connectez-vous pour enregistrer vos adresses" /> : null}
           {status === 'in' ? <Row href="/compte/profil" icon="account" label="Mes informations" /> : null}
-          <Row href="/favoris" icon="heart" label={`Mes favoris${handles.length ? ` (${handles.length})` : ''}`} />
         </Group>
 
-        <Group title="Aide">
-          <Row href="/page/guide-des-pointures" icon="ruler" label="Guide des pointures" />
-          <Row href="/page/entretien" label="Conseils d’entretien" />
-          <Row href="/page/faq" label="Questions fréquentes" />
+        <Group title="Nous contacter">
           <Row onPress={() => Linking.openURL(`https://wa.me/${wa}`)} icon="whatsapp" label={`WhatsApp · ${content.settings.whatsapp}`} />
           <Row onPress={() => Linking.openURL(`tel:${tel}`)} icon="phone" label={`Téléphone · ${content.settings.phone}`} />
-        </Group>
-
-        <Group title="La marque">
-          <Row href="/page/a-propos" label="À propos de zayou" />
-          <Row href="/page/inspirations" label="Inspirations" />
-          <Row onPress={() => WebBrowser.openBrowserAsync(`https://${SHOP_DOMAIN}/blogs/infos`)} label="Journal" />
-          <Row onPress={() => WebBrowser.openBrowserAsync(`https://${SHOP_DOMAIN}/policies/privacy-policy`)} label="Politique de confidentialité" />
         </Group>
 
         {status === 'in' ? (
@@ -107,9 +99,9 @@ export default function Compte() {
 function Group({ title, children }: { title: string; children: React.ReactNode }) {
   return <View><Text style={[T.label, { marginBottom: 6 }]}>{title}</Text>{children}</View>;
 }
-function Row({ href, onPress, label, icon, danger }: { href?: string; onPress?: () => void; label: string; icon?: IconName; danger?: boolean }) {
+function Row({ href, onPress, label, hint, icon, danger }: { href?: string; onPress?: () => void; label: string; hint?: string; icon?: IconName; danger?: boolean }) {
   const inner = (
-    <Pressable onPress={onPress} style={st.row} accessibilityRole={href ? 'link' : 'button'}>
+    <Pressable onPress={onPress} style={st.row} accessibilityRole={href ? 'link' : 'button'} accessibilityHint={hint}>
       {icon ? <Icon name={icon} size={18} /> : null}
       <Text style={[st.text, danger && { color: C.error }]}>{label}</Text>
       <Icon name="chevron-right" size={18} color={C.muted} />

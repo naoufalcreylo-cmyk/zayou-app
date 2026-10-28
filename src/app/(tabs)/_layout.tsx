@@ -1,31 +1,26 @@
 import { Tabs } from 'expo-router';
-import { Text, View } from 'react-native';
 
 import { Icon } from '@/components/Icon';
-import { useCart } from '@/state/cart';
+import { useWishlist } from '@/state/wishlist';
 import { C, F } from '@/theme';
 
+// Search and cart live in the header (components/AppHeader), not in the tab bar.
 export default function TabsLayout() {
-  const { cart } = useCart();
-  const count = cart?.totalQuantity ?? 0;
+  const { handles } = useWishlist();
   return (
     <Tabs screenOptions={{
       headerShown: false,
       tabBarActiveTintColor: C.ink, tabBarInactiveTintColor: C.muted,
       tabBarLabelStyle: { fontFamily: F.medium, fontSize: 11 },
       tabBarStyle: { borderTopColor: C.line, backgroundColor: C.bg },
+      tabBarBadgeStyle: { backgroundColor: C.ink, color: C.bg, fontFamily: F.semibold, fontSize: 11 },
     }}>
       <Tabs.Screen name="index" options={{ title: 'Accueil', tabBarIcon: ({ color }) => <Icon name="home" color={color as string} /> }} />
       <Tabs.Screen name="boutique" options={{ title: 'Boutique', tabBarIcon: ({ color }) => <Icon name="grid" color={color as string} /> }} />
-      <Tabs.Screen name="recherche" options={{ title: 'Recherche', tabBarIcon: ({ color }) => <Icon name="search" color={color as string} /> }} />
-      <Tabs.Screen name="panier" options={{
-        title: 'Panier', tabBarAccessibilityLabel: count ? `Panier, ${count} article${count > 1 ? 's' : ''}` : 'Panier',
-        tabBarIcon: ({ color }) => (
-          <View>
-            <Icon name="bag" color={color as string} />
-            {count > 0 ? <View style={{ position: 'absolute', top: -4, right: -8, minWidth: 17, height: 17, borderRadius: 9, backgroundColor: C.ink, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 4 }}><Text style={{ color: C.bg, fontSize: 11, fontFamily: F.semibold }}>{count}</Text></View> : null}
-          </View>
-        ),
+      <Tabs.Screen name="favoris" options={{
+        title: 'Liste d’envies', tabBarBadge: handles.length || undefined,
+        tabBarAccessibilityLabel: handles.length ? `Liste d’envies, ${handles.length} article${handles.length > 1 ? 's' : ''}` : 'Liste d’envies',
+        tabBarIcon: ({ color }) => <Icon name="heart" color={color as string} />,
       }} />
       <Tabs.Screen name="compte" options={{ title: 'Compte', tabBarIcon: ({ color }) => <Icon name="account" color={color as string} /> }} />
     </Tabs>

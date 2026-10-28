@@ -105,9 +105,23 @@ export async function getCollectionVariants(handle: string): Promise<{ options: 
 
 /**
  * Every product of a listing, for client-side size/stock filtering (collections here are < 250 products).
- * key: a collection handle, "all", or "vendor:<name>".
+ * key: a collection handle, "all", "vendor:<name>", "best-sellers" (Shopify sales ranking)
+ * or "destockage" (the "destockage" collection if the store has one, otherwise the biggest reductions in stock).
  */
 export async function getListing(key: string): Promise<{ title: string; description: string; products: ProductCard[] } | null> {
+  if (key === 'best-sellers') {
+    const d = await shopify<{ products: { nodes: RawCard[] } }>(`{ products(first: 250, sortKey: BEST_SELLING) { nodes { ${CARD} } } }`);
+    return { title: 'Best sellers', description: '', products: d.products.nodes.map(card) };
+  }
+  if (key === 'destockage') {
+    const own = await getListing('collection:destockage');
+    if (own?.products.length) return { ...own, title: 'Déstockage' };
+    const all = await getListing('all');
+    const off = (p: ProductCard) => 1 - parseFloat(p.priceRange.minVariantPrice.amount) / parseFloat(p.compareAtPriceRange.maxVariantPrice.amount);
+    const products = (all?.products ?? []).filter(p => p.availableForSale && onSale(p.priceRange.minVariantPrice, p.compareAtPriceRange.maxVariantPrice)).sort((a, b) => off(b) - off(a));
+    return { title: 'Déstockage', description: '', products };
+  }
+  if (key.startsWith('collection:')) key = key.slice(11);
   if (key === 'all' || key.startsWith('vendor:')) {
     const q = key === 'all' ? '' : `vendor:'${key.slice(7).replace(/'/g, '')}'`;
     const d = await shopify<{ products: { nodes: RawCard[] } }>(`query($q: String) { products(first: 250, query: $q) { nodes { ${CARD} } } }`, { q: q || null });

@@ -15,10 +15,10 @@ export default function Panier() {
   const { cart, busy, error, setQuantity, remove, checkout, refresh, clearError } = useCart();
   useFocusEffect(useCallback(() => { refresh(); }, [refresh]));
   const lines = cart?.lines ?? [];
+  const count = cart?.totalQuantity ?? 0;
   return (
-    <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: C.bg }}>
-      <ScrollView contentContainerStyle={{ padding: S.edge, paddingBottom: 24, gap: 16, flexGrow: 1 }}>
-        <Text style={T.display} accessibilityRole="header">panier</Text>
+    <SafeAreaView edges={['bottom']} style={{ flex: 1, backgroundColor: C.bg }}>
+      <ScrollView contentContainerStyle={{ padding: S.edge, paddingTop: 4, paddingBottom: 24, gap: 16, flexGrow: 1 }}>
         {!lines.length ? (
           <View style={{ gap: 14, paddingTop: 8 }}>
             <Text style={T.body}>Votre panier est vide.</Text>
@@ -55,7 +55,10 @@ export default function Panier() {
       </ScrollView>
       {lines.length ? (
         <View style={st.foot}>
-          <View style={st.total}><Text style={st.totalText}>Sous-total</Text><Text style={st.totalText}>{money(cart?.cost.subtotalAmount)}</Text></View>
+          <View style={st.total}>
+            <Text style={st.totalText}>Sous-total <Text style={st.count}>· {count} article{count > 1 ? 's' : ''}</Text></Text>
+            <Text style={st.totalText}>{money(cart?.cost.subtotalAmount)}</Text>
+          </View>
           <Text style={T.small}>Frais de livraison calculés à l’étape suivante.</Text>
           <Button label="Commander" onPress={checkout} loading={busy} />
           <Text style={[T.small, { textAlign: 'center' }]}>Paiement à la livraison disponible</Text>
@@ -77,6 +80,7 @@ const st = StyleSheet.create({
   foot: { padding: S.edge, gap: 10, borderTopWidth: 1, borderColor: C.line, backgroundColor: C.bg },
   total: { flexDirection: 'row', justifyContent: 'space-between' },
   totalText: { fontFamily: F.semibold, fontSize: 17, color: C.ink },
+  count: { fontFamily: F.regular, fontSize: 15, color: C.muted },
   pill: { minHeight: 44, paddingHorizontal: 16, borderRadius: R.pill, borderWidth: 1, borderColor: C.lineStrong, justifyContent: 'center' },
   pillText: { fontFamily: F.medium, fontSize: 14, color: C.ink },
 });

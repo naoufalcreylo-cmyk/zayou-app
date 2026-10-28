@@ -1,30 +1,30 @@
-import { Image } from 'expo-image';
-import { router } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Icon } from '@/components/Icon';
+import { AppHeader } from '@/components/AppHeader';
 import { Sections } from '@/components/Sections';
 import content from '@/content/sections.json';
-import { C, S } from '@/theme';
+import { C } from '@/theme';
+
+// App-only homepage (the website keeps its own): theme hero, categories and size finder + live product rails.
+const theme = (type: string) => (content.home as { type: string }[]).filter(s => s.type === type);
+const HOME = [
+  ...theme('hero'),
+  ...theme('categories'),
+  { type: 'listing', listing: 'best-sellers', heading: 'best sellers' },
+  ...theme('sizeFinder'),
+  { type: 'listing', listing: 'destockage', heading: 'déstockage' },
+  { type: 'listing', listing: 'baskets-homme', heading: 'baskets', action: 'Toutes les baskets' },
+  { type: 'listing', listing: 'mocassins-homme', heading: 'mocassins', action: 'Tous les mocassins' },
+];
 
 export default function Home() {
   return (
     <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: C.bg }}>
-      <View style={st.header}>
-        <View style={{ width: 44 }} />
-        <Image source={require('@/../assets/brand/logo.png')} style={st.logo} contentFit="contain" accessibilityLabel="zayou" accessibilityRole="header" />
-        <Pressable onPress={() => router.navigate('/recherche')} hitSlop={8} style={st.icon} accessibilityRole="button" accessibilityLabel="Rechercher"><Icon name="search" /></Pressable>
-      </View>
+      <AppHeader />
       <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
-        <Sections sections={content.home as never} />
+        <Sections sections={HOME as never} />
       </ScrollView>
     </SafeAreaView>
   );
 }
-
-const st = StyleSheet.create({
-  header: { height: 52, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: S.edge - 6 },
-  logo: { width: 92, height: 26 },
-  icon: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
-});

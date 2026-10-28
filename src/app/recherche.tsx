@@ -36,10 +36,10 @@ export default function Recherche() {
   }, [term]);
 
   return (
-    <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: C.bg }}>
+    <SafeAreaView edges={[]} style={{ flex: 1, backgroundColor: C.bg }}>
       <View style={st.bar}>
         <Icon name="search" size={20} />
-        <TextInput value={q} onChangeText={setQ} placeholder="Baskets, mocassins, couleur…" placeholderTextColor={C.muted} style={st.input}
+        <TextInput value={q} onChangeText={setQ} autoFocus={!params.q} placeholder="Baskets, mocassins, couleur…" placeholderTextColor={C.muted} style={st.input}
           autoCorrect={false} autoCapitalize="none" returnKeyType="search" clearButtonMode="while-editing" accessibilityLabel="Rechercher" />
         {loading ? <ActivityIndicator color={C.ink} /> : q ? <Pressable onPress={() => setQ('')} hitSlop={10} accessibilityLabel="Effacer"><Icon name="close" size={18} /></Pressable> : null}
       </View>

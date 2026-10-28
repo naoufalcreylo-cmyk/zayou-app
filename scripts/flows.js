@@ -17,7 +17,9 @@ const ok = (n, c, info = '') => { results.push(`${c ? 'PASS' : 'FAIL'}  ${n}${in
   // home
   await p.goto(BASE + '/', { waitUntil: 'networkidle', timeout: 120000 }); await p.waitForTimeout(2500);
   const home = await text();
-  ok('Home: campaign hero and sections from the theme', /souples, du matin au soir/.test(home) && /par catégorie/.test(home) && /la sélection zayou/.test(home) && /trouvez votre style/.test(home) && /dans le détail/.test(home));
+  ok('Home (app): hero, categories, best sellers, pointure, déstockage, baskets, mocassins', [/souples, du matin au soir/, /par catégorie/, /best sellers/, /votre pointure/, /déstockage/, /^baskets$/m, /^mocassins$/m].every(r => r.test(home)));
+  ok('Home (app): removed sections are gone', ![/la sélection zayou/, /trouvez votre style/, /dans le détail/, /zayou, en bref/, /conseils & guides/].some(r => r.test(home)));
+  ok('Tab bar: Accueil, Boutique, Liste d’envies, Compte', JSON.stringify(await p.getByRole('tab').allInnerTexts()) === JSON.stringify(['Accueil', 'Boutique', 'Liste d’envies', 'Compte']));
   ok('Home: real products with prices in dh', /Crest - Tabac/.test(home) && /\d+ dh/.test(home));
 
   // collection with size filter
@@ -48,7 +50,10 @@ const ok = (n, c, info = '') => { results.push(`${c ? 'PASS' : 'FAIL'}  ${n}${in
   ok('Cart: line with product, size 42 and colour', /Crest - Tabac/.test(cart) && /Pointure : 42/.test(cart) && /Tabac/.test(cart));
   await p.getByRole('button', { name: 'Augmenter la quantité' }).first().click(); await p.waitForTimeout(3500);
   ok('Cart: quantity + updates subtotal (2 × 299 dh)', /598 dh/.test(await text()));
-  ok('Cart: tab badge shows the item count', (await p.getByRole('tab', { name: /Panier, 2 articles/ }).count() + await p.getByRole('button', { name: /Panier, 2 articles/ }).count() + await p.getByRole('link', { name: /Panier, 2 articles/ }).count()) > 0);
+  ok('Cart: article count next to the subtotal', /Sous-total · 2 articles/.test(await text()));
+  await p.goto(BASE + '/', { waitUntil: 'networkidle' }); await p.waitForTimeout(2500);
+  ok('Header: cart icon shows the item count', (await p.getByRole('button', { name: /Panier, 2 articles/ }).count()) > 0);
+  await p.getByRole('button', { name: /Panier, 2 articles/ }).click(); await p.waitForTimeout(3000);
   await Promise.all([p.waitForURL(/checkouts?\//, { timeout: 30000 }).catch(() => {}), p.getByRole('button', { name: 'Commander' }).click()]);
   await p.waitForLoadState('domcontentloaded').catch(() => {});
   ok('Checkout: hands off to Shopify checkout (order created in Shopify)', /zayou-5\.myshopify\.com\/checkouts\//.test(p.url()), p.url().replace(/\?.*/, '').replace(/[A-Za-z0-9]{20,}/g, '…'));
