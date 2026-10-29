@@ -50,7 +50,7 @@
       "apiVersion": "2025-10",
       "storefrontToken": "c0acf4f693eeaee781b45c4abdaea72c",
       "shopId": "62344691777",
-      "apiUrl": ""
+      "apiUrl": "https://zayou-app-server.vercel.app"
     }
   }
 }
