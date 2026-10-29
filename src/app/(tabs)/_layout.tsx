@@ -17,8 +17,9 @@ export default function TabsLayout() {
     }}>
       <Tabs.Screen name="index" options={{ title: 'Accueil', tabBarIcon: ({ color }) => <Icon name="home" color={color as string} /> }} />
       <Tabs.Screen name="boutique" options={{ title: 'Boutique', tabBarIcon: ({ color }) => <Icon name="grid" color={color as string} /> }} />
+      <Tabs.Screen name="promos" options={{ title: 'Promos', tabBarIcon: ({ color }) => <Icon name="tag" color={color as string} /> }} />
       <Tabs.Screen name="favoris" options={{
-        title: 'Liste d’envies', tabBarBadge: handles.length || undefined,
+        title: 'Envies', tabBarBadge: handles.length || undefined,
         tabBarAccessibilityLabel: handles.length ? `Liste d’envies, ${handles.length} article${handles.length > 1 ? 's' : ''}` : 'Liste d’envies',
         tabBarIcon: ({ color }) => <Icon name="heart" color={color as string} />,
       }} />

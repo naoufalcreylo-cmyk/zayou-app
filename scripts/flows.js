@@ -19,7 +19,7 @@ const ok = (n, c, info = '') => { results.push(`${c ? 'PASS' : 'FAIL'}  ${n}${in
   const home = await text();
   ok('Home (app): hero, categories, best sellers, pointure, déstockage, baskets, mocassins', [/souples, du matin au soir/, /par catégorie/, /best sellers/, /votre pointure/, /déstockage/, /^baskets$/m, /^mocassins$/m].every(r => r.test(home)));
   ok('Home (app): removed sections are gone', ![/la sélection zayou/, /trouvez votre style/, /dans le détail/, /zayou, en bref/, /conseils & guides/].some(r => r.test(home)));
-  ok('Tab bar: Accueil, Boutique, Liste d’envies, Compte', JSON.stringify(await p.getByRole('tab').allInnerTexts()) === JSON.stringify(['Accueil', 'Boutique', 'Liste d’envies', 'Compte']));
+  ok('Tab bar: Accueil, Boutique, Promos, Envies, Compte', JSON.stringify(await p.getByRole('tab').allInnerTexts()) === JSON.stringify(['Accueil', 'Boutique', 'Promos', 'Envies', 'Compte']));
   ok('Home: real products with prices in dh', /Crest - Tabac/.test(home) && /\d+ dh/.test(home));
 
   // collection with size filter

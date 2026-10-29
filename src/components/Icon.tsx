@@ -3,7 +3,7 @@ import Svg, { Circle, Path, Rect } from 'react-native-svg';
 
 import { C } from '@/theme';
 
-export type IconName = 'home' | 'grid' | 'search' | 'bag' | 'info' | 'account' | 'heart' | 'heart-filled' | 'box' | 'pin' | 'logout' | 'close' | 'plus' | 'minus' | 'arrow-right' | 'arrow-left' | 'chevron-right' | 'truck' | 'cash' | 'whatsapp' | 'phone' | 'ruler' | 'check' | 'filter';
+export type IconName = 'home' | 'grid' | 'search' | 'bag' | 'info' | 'account' | 'heart' | 'heart-filled' | 'box' | 'pin' | 'logout' | 'close' | 'plus' | 'minus' | 'arrow-right' | 'arrow-left' | 'chevron-right' | 'truck' | 'cash' | 'whatsapp' | 'phone' | 'ruler' | 'check' | 'filter' | 'tag';
 
 export function Icon({ name, size = 22, color = C.ink, strokeWidth = 1.5 }: { name: IconName; size?: number; color?: string; strokeWidth?: number }) {
   const p = { stroke: color, strokeWidth, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, fill: 'none' };
@@ -31,6 +31,7 @@ export function Icon({ name, size = 22, color = C.ink, strokeWidth = 1.5 }: { na
       {name === 'phone' && <Path {...p} d="M6.5 3.5h3l1.5 4-2 1.5a10 10 0 006 6l1.5-2 4 1.5v3a2 2 0 01-2 2A16 16 0 014.5 5.5a2 2 0 012-2z" />}
       {name === 'ruler' && <><Path {...p} d="M3.5 15.5l12-12 5 5-12 12z" /><Path {...p} d="M7 12l1.8 1.8M9.5 9.5l1.8 1.8M12 7l1.8 1.8" /></>}
       {name === 'check' && <Path {...p} d="M5 12.5l4.5 4.5L19 7.5" />}
+      {name === 'tag' && <><Path {...p} d="M3.5 12.2V4.5a1 1 0 011-1h7.7l8.3 8.3a1.5 1.5 0 010 2.1l-6.4 6.4a1.5 1.5 0 01-2.1 0z" /><Circle {...p} cx={8} cy={8} r={1.4} /></>}
       {name === 'filter' && <><Path {...p} d="M4 7h10M18 7h2M4 17h4M12 17h8" /><Circle {...p} cx={16} cy={7} r={2} /><Circle {...p} cx={10} cy={17} r={2} /></>}
     </Svg>
   );

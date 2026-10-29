@@ -106,7 +106,8 @@ export async function getCollectionVariants(handle: string): Promise<{ options: 
 /**
  * Every product of a listing, for client-side size/stock filtering (collections here are < 250 products).
  * key: a collection handle, "all", "vendor:<name>", "best-sellers" (Shopify sales ranking)
- * or "destockage" (the "destockage" collection if the store has one, otherwise the biggest reductions in stock).
+ * "destockage" (the "destockage" collection if the store has one, otherwise the biggest reductions in stock)
+ * or "promos" (the "promos" collection if the store has one, otherwise everything on promotion in stock).
  */
 export async function getListing(key: string): Promise<{ title: string; description: string; products: ProductCard[] } | null> {
   if (key === 'best-sellers') {
@@ -120,6 +121,13 @@ export async function getListing(key: string): Promise<{ title: string; descript
     const off = (p: ProductCard) => 1 - parseFloat(p.priceRange.minVariantPrice.amount) / parseFloat(p.compareAtPriceRange.maxVariantPrice.amount);
     const products = (all?.products ?? []).filter(p => p.availableForSale && onSale(p.priceRange.minVariantPrice, p.compareAtPriceRange.maxVariantPrice)).sort((a, b) => off(b) - off(a));
     return { title: 'Déstockage', description: '', products };
+  }
+  if (key === 'promos') {
+    // Until the owner picks the articles (a "promos" collection in Shopify), every product on promotion in stock, best sellers first.
+    const own = await getListing('collection:promos');
+    if (own?.products.length) return { ...own, title: 'Promos' };
+    const best = await getListing('best-sellers');
+    return { title: 'Promos', description: '', products: (best?.products ?? []).filter(p => p.availableForSale && onSale(p.priceRange.minVariantPrice, p.compareAtPriceRange.maxVariantPrice)) };
   }
   if (key.startsWith('collection:')) key = key.slice(11);
   if (key === 'all' || key.startsWith('vendor:')) {
