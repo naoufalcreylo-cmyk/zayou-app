@@ -60,6 +60,12 @@
         "projectId": "2b02f6c1-a561-4ac2-8404-ae9eb83eacad"
       }
     },
-    "owner": "zayou.ma"
+    "owner": "zayou.ma",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/2b02f6c1-a561-4ac2-8404-ae9eb83eacad"
+    }
   }
 }
