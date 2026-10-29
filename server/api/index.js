@@ -28,7 +28,8 @@ async function issueCode(c, purpose) {
   const code = S.newCode();
   auth.code = { h: S.hashCode(code, c.email.toLowerCase()), exp: Date.now() + CODE_TTL, purpose, sentAt: Date.now(), tries: 0 };
   await shop.saveAuth(c.id, auth);
-  await sendCode(c.email, code, purpose);
+  try { await sendCode(c.email, code, purpose); }
+  catch (e) { delete auth.code; await shop.saveAuth(c.id, auth).catch(() => {}); throw e; } // a failed send must not block a retry
 }
 function checkCode(c, code, purpose) {
   const k = c.auth && c.auth.code;
