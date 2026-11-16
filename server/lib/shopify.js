@@ -1,13 +1,15 @@
 // Shopify Admin API (GraphQL) for a Dev Dashboard app installed on the store.
 // Token: client credentials grant (24 h), cached in memory and renewed automatically.
 // Env: SHOPIFY_SHOP (e.g. zayou-5), SHOPIFY_CLIENT_ID, SHOPIFY_CLIENT_SECRET — or SHOPIFY_ADMIN_TOKEN for a legacy custom app.
-const API_VERSION = process.env.SHOPIFY_API_VERSION || '2025-10';
-const SHOP = (process.env.SHOPIFY_SHOP || 'zayou-5').replace(/\.myshopify\.com$/, '');
-let cached = { token: process.env.SHOPIFY_ADMIN_TOKEN || null, expiresAt: process.env.SHOPIFY_ADMIN_TOKEN ? Infinity : 0 };
+// Env is read at call time, not at module load, so it also works where process.env is filled after start-up (Cloudflare Workers).
+const apiVersion = () => process.env.SHOPIFY_API_VERSION || '2025-10';
+const shopName = () => (process.env.SHOPIFY_SHOP || 'zayou-5').replace(/\.myshopify\.com$/, '');
+let cached = { token: null, expiresAt: 0 };
 
 async function accessToken() {
+  if (process.env.SHOPIFY_ADMIN_TOKEN) return process.env.SHOPIFY_ADMIN_TOKEN;
   if (cached.token && Date.now() < cached.expiresAt - 60_000) return cached.token;
-  const res = await fetch(`https://${SHOP}.myshopify.com/admin/oauth/access_token`, {
+  const res = await fetch(`https://${shopName()}.myshopify.com/admin/oauth/access_token`, {
     method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({ grant_type: 'client_credentials', client_id: process.env.SHOPIFY_CLIENT_ID || '', client_secret: process.env.SHOPIFY_CLIENT_SECRET || '' }),
   });
@@ -18,7 +20,7 @@ async function accessToken() {
 }
 
 async function admin(query, variables = {}) {
-  const res = await fetch(`https://${SHOP}.myshopify.com/admin/api/${API_VERSION}/graphql.json`, {
+  const res = await fetch(`https://${shopName()}.myshopify.com/admin/api/${apiVersion()}/graphql.json`, {
     method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Shopify-Access-Token': await accessToken() },
     body: JSON.stringify({ query, variables }),
   });
@@ -105,4 +107,4 @@ async function deleteOrErase(customerId) {
   return 'erasure_requested';
 }
 
-module.exports = { admin, findCustomerByEmail, getCustomer, createCustomer, updateCustomer, saveAuth, listOrders, getOrder, listAddresses, createAddress, updateAddress, deleteAddress, deleteOrErase, SHOP };
+module.exports = { admin, findCustomerByEmail, getCustomer, createCustomer, updateCustomer, saveAuth, listOrders, getOrder, listAddresses, createAddress, updateAddress, deleteAddress, deleteOrErase, shopName };

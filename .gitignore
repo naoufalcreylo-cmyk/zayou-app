@@ -44,3 +44,7 @@ example
 
 # QA screenshots
 qa/
+
+# Cloudflare Workers local files
+server/.wrangler/
+server/.dev.vars

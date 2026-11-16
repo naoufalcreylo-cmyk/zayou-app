@@ -1,0 +1,12 @@
+// Cloudflare Workers config (Workers Paid plan: login/sign-up hash passwords with scrypt, ~50 ms CPU, above the Free plan's 10 ms).
+// Deploy: npx wrangler deploy   ·   secrets: npx wrangler secret put AUTH_SECRET (and the other names below)
+{
+  "name": "zayou-app-api",
+  "main": "worker.js",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "observability": { "enabled": true },
+  "vars": { "SHOPIFY_SHOP": "zayou-5" }
+  // Secrets (not in this file): AUTH_SECRET, SHOPIFY_CLIENT_ID, SHOPIFY_CLIENT_SECRET, RESEND_API_KEY, MAIL_FROM
+}

@@ -171,7 +171,7 @@ const routes = {
   'PUT /addresses/:id': async ({ req, body, params }) => { const c = await authed(req); await shop.updateAddress(c.id, `gid://shopify/MailingAddress/${params.id}?model_name=CustomerAddress`, addressInput(body), !!body.isDefault); return shop.listAddresses(c.id); },
   'DELETE /addresses/:id': async ({ req, params }) => { const c = await authed(req); await shop.deleteAddress(c.id, `gid://shopify/MailingAddress/${params.id}?model_name=CustomerAddress`); return shop.listAddresses(c.id); },
 
-  'GET /health': async () => ({ ok: true, shop: shop.SHOP }),
+  'GET /health': async () => ({ ok: true, shop: shop.shopName() }),
 };
 
 function match(method, path) {
