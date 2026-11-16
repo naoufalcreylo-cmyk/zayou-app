@@ -17,8 +17,8 @@ const ok = (n, c, info = '') => { results.push(`${c ? 'PASS' : 'FAIL'}  ${n}${in
   // home
   await p.goto(BASE + '/', { waitUntil: 'networkidle', timeout: 120000 }); await p.waitForTimeout(2500);
   const home = await text();
-  ok('Home (app): hero, categories, best sellers, pointure, déstockage, baskets, mocassins', [/souples, du matin au soir/, /par catégorie/, /best sellers/, /votre pointure/, /déstockage/, /^baskets$/m, /^mocassins$/m].every(r => r.test(home)));
-  ok('Home (app): removed sections are gone', ![/la sélection zayou/, /trouvez votre style/, /dans le détail/, /zayou, en bref/, /conseils & guides/].some(r => r.test(home)));
+  ok('Home (app): hero, categories, best sellers, déstockage, baskets, mocassins, sabots, bottines, sandales', [/pour la saison froide/, /par catégorie/, /best sellers/, /déstockage/, /^baskets$/m, /^mocassins$/m, /^sabots$/m, /^bottines$/m, /^sandales$/m].every(r => r.test(home)));
+  ok('Home (app): removed sections are gone', ![/souples, du matin au soir/, /votre pointure/, /la sélection zayou/, /trouvez votre style/, /dans le détail/, /zayou, en bref/, /conseils & guides/].some(r => r.test(home)));
   ok('Tab bar: Accueil, Boutique, Promos, Envies, Compte', JSON.stringify(await p.getByRole('tab').allInnerTexts()) === JSON.stringify(['Accueil', 'Boutique', 'Promos', 'Envies', 'Compte']));
   ok('Home: real products with prices in dh', /Crest - Tabac/.test(home) && /\d+ dh/.test(home));
 
